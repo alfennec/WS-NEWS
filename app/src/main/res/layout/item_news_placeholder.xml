@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_padding">
+
+    <View
+        android:id="@+id/thumbnail"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:background="@drawable/rounded_image" />
+
+    <View
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/thumbnail"
+        android:background="@drawable/rounded_image" />
+
+    <View
+        android:id="@+id/des"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/name"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/thumbnail"
+        android:background="@drawable/rounded_image" />
+
+    <View
+        android:id="@+id/hol1"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/des"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/thumbnail"
+        android:background="@drawable/rounded_image" />
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/des"
+        android:layout_toRightOf="@id/hol1"
+        android:background="@drawable/rounded_image" />
+
+</RelativeLayout>
