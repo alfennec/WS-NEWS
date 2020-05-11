@@ -16,20 +16,21 @@ import com.bumptech.glide.request.RequestOptions;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.controller.HomeActivity;
-import com.fennec.dailynews.controller.NewsActivity;
+import com.fennec.dailynews.controller.ui.category.CategoryFragment;
+import com.fennec.dailynews.entity.Category;
 import com.fennec.dailynews.entity.News;
 
 import java.util.List;
 
-public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdapter.MyViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
-    public List<News> list;
+    public List<Category> list;
     public boolean showAdd = false;
 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView title_news,time_news,nbr_comments;
-        public ImageView image_news;
+        public TextView title_category;
+        public ImageView image_category;
         public View parent;
         public RecyclerView recyclerView;
 
@@ -37,24 +38,22 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
         {
             super(view);
             parent=view;
-            title_news = (TextView) view.findViewById(R.id.title_news);
-            time_news = (TextView) view.findViewById(R.id.time_news);
-            nbr_comments = (TextView) view.findViewById(R.id.nbr_comments);
-            image_news = (ImageView) view.findViewById(R.id.image_news);
+            title_category = (TextView) view.findViewById(R.id.title_category);
+            image_category = (ImageView) view.findViewById(R.id.image_category);
         }
     }
 
-    public NewsSuggestedAdapter(List<News> list)
+    public CategoryAdapter(List<Category> list)
     {
         this.list = list;
     }
 
     @Override
-    public NewsSuggestedAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public CategoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_suggested, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
 
-        return new NewsSuggestedAdapter.MyViewHolder(itemView);
+        return new CategoryAdapter.MyViewHolder(itemView);
     }
 
     @Override
@@ -66,17 +65,16 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
     }
 
     @Override
-    public void onBindViewHolder(final NewsSuggestedAdapter.MyViewHolder holder, final int position)
+    public void onBindViewHolder(final CategoryAdapter.MyViewHolder holder, final int position)
     {
-        final News myNews = list.get(position);
-        holder.title_news.setText(myNews.title);
-        holder.time_news.setText(myNews.date_news);
+        final Category myCategory = list.get(position);
+        holder.title_category.setText(myCategory.name);
 
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
+        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/category/"+myCategory.image).apply(requestOptions).into(holder.image_category);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
 
@@ -85,7 +83,7 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
             @Override
             public void onClick(View view)
             {
-                NewsActivity.to_newIntent(myNews.id);
+                CategoryFragment.to_newIntent(myCategory.id);
             }
         });
 

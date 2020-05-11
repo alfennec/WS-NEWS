@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.controller.HomeActivity;
+import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.entity.News;
 
 import java.util.List;
@@ -52,7 +53,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @Override
     public NewsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+        //View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+
+        View itemView;
+        if(viewType == 1)
+        {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_top, parent, false);
+        }else{
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+        }
 
         return new NewsAdapter.MyViewHolder(itemView);
     }
@@ -60,9 +69,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @Override
     public int getItemViewType(int position)
     {
-        if(position == getItemCount()-1 && showAdd)
+        /*if(position == getItemCount()-1 && showAdd)
             return 2;
-        return 1;
+        return 1;*/
+
+        if (position == 0) return 1;
+        else return 2;
     }
 
     @Override
@@ -70,7 +82,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     {
         final News myNews = list.get(position);
         holder.title_news.setText(myNews.title);
-        holder.description_news.setText(myNews.description);
+        if(position > 0) holder.description_news.setText(myNews.description);
         holder.time_news.setText(myNews.date_news);
 
 
@@ -86,7 +98,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             @Override
             public void onClick(View view)
             {
-                HomeActivity.to_newIntent();
+                HomeFragment.to_newIntent(myNews.id);
             }
         });
 

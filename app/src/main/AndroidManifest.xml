@@ -18,10 +18,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".controller.CategoryActivity"
+            android:label="@string/title_activity_category"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".controller.NewsActivity"
             android:label="@string/title_activity_news"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".controller.SplashActivity">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +36,9 @@
         </activity>
         <activity
             android:name=".controller.HomeActivity"
-            android:label="@string/title_activity_home" />
-        <activity android:name=".controller.MainActivity"></activity>
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".controller.MainActivity" />
     </application>
 
 </manifest>

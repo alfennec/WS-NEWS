@@ -15,6 +15,35 @@ public class NewsRepository {
 
     public static ArrayList<News> list_news = new ArrayList<>();
 
+    public static News getById(int id)
+    {
+        News current_news = new News();
+
+        for (int i = 0; i < list_news.size(); i++)
+        {
+            if(list_news.get(i).id == id)
+            {
+                current_news = list_news.get(i);
+            }
+        }
+
+        return current_news;
+    }
+
+    public static ArrayList<News> getNewsWhereIdCat(int idCat)
+    {
+        ArrayList<News> current_list = new ArrayList<>();
+
+        for (int i = 0; i < list_news.size(); i++)
+        {
+            if(list_news.get(i).id_category == idCat)
+            {
+                current_list.add(list_news.get(i));
+            }
+        }
+
+        return current_list;
+    }
 
     public static boolean ParseData(String result)
     {
