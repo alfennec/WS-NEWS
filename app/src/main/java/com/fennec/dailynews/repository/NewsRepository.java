@@ -90,4 +90,16 @@ public class NewsRepository {
 
         return false;
     }
+
+    public static ArrayList<String> getStringNews()
+    {
+        ArrayList<String> newsString = new ArrayList<>();
+
+        for (int i = 0; i < list_news.size(); i++)
+        {
+            newsString.add(list_news.get(i).title);
+        }
+
+        return newsString;
+    }
 }

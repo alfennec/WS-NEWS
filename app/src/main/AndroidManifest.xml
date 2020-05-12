@@ -18,9 +18,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".controller.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".controller.CategoryActivity"
             android:label="@string/title_activity_category"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.NewsActivity"
             android:label="@string/title_activity_news"

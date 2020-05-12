@@ -2,6 +2,9 @@ package com.fennec.dailynews.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.fennec.dailynews.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,6 +19,9 @@ import androidx.navigation.ui.NavigationUI;
 public class HomeActivity extends AppCompatActivity {
 
     public static HomeActivity main;
+
+    public static ImageButton tb_btn_search, tb_btn_account;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +43,21 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
+        /**** tootlbar click button **/
+
+        tb_btn_account = (ImageButton) findViewById(R.id.tb_btn_account);
+        tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
+
+        tb_btn_search.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main, SearchActivity.class);
+                main.startActivity(intent);
+            }
+        });
     }
 }

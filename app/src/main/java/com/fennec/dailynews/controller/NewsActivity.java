@@ -24,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,7 +33,6 @@ import android.widget.TextView;
 import com.fennec.dailynews.R;
 
 public class NewsActivity extends AppCompatActivity {
-
 
     public static NewsActivity main;
 
@@ -86,8 +86,9 @@ public class NewsActivity extends AppCompatActivity {
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
-        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/"+current_news.news_photo).apply(requestOptions).into(first_image);
+        Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).apply(requestOptions).into(first_image);
 
+        Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
 
 
         /*** suggestion part **/
