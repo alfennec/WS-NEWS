@@ -1,4 +1,4 @@
-package com.fennec.dailynews.controller.ui.video;
+package com.fennec.dailynews.controller.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.fennec.dailynews.R;
 
-public class VideoFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private VideoViewModel videoViewModel;
+    private ProfileViewModel videoViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        videoViewModel =
-                ViewModelProviders.of(this).get(VideoViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_video, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        videoViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
         videoViewModel.getText().observe(this, new Observer<String>() {
             @Override

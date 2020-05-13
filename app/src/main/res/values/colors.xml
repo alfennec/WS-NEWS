@@ -25,4 +25,6 @@
     <color name="green">#669900</color>
     <color name="orange">#FF8800</color>
 
+    <color name="back_wall">#f1f1f1</color>
+
 </resources>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/image_news"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_gravity="right"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:tint="@color/colorBlanc"
+                    app:srcCompat="@drawable/ic_comment_black_24dp" />
+
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:tint="@color/colorBlanc"
+                    app:srcCompat="@drawable/ic_share_black_24dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:paddingHorizontal="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Top News"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/colorBlanc"
+                android:background="@drawable/rounded_category"
+                />
+
+            <TextView
+                android:id="@+id/title_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2020 census extended due to low participation, COVID-19"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorBlanc"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="2"/>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:tint="@color/colorBlanc"
+                    app:srcCompat="@drawable/ic_edit_black_24dp" />
+
+                <TextView
+                    android:layout_marginLeft="3dp"
+                    android:id="@+id/time_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Berrahal Mohammed"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlanc"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

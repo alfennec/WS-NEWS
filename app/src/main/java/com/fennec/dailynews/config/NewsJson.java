@@ -3,6 +3,7 @@ package com.fennec.dailynews.config;
 import android.content.Context;
 import android.util.Log;
 
+import com.fennec.dailynews.controller.ui.favorite.FavoriteFragment;
 import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.repository.NewsRepository;
 import com.koushikdutta.async.future.FutureCallback;
@@ -54,7 +55,7 @@ public class NewsJson {
         {
             case 1: getSuccess(result); break;
 
-            case 2: deleteSuccess(); break;
+            case 2: getSuccess2(result); break;
 
             default : break;
         }
@@ -65,6 +66,14 @@ public class NewsJson {
         if(NewsRepository.ParseData(result))
         {
             HomeFragment.onSucces();
+        }
+    }
+
+    public void getSuccess2(String result)
+    {
+        if(NewsRepository.ParseData(result))
+        {
+            FavoriteFragment.onSucces();
         }
     }
 

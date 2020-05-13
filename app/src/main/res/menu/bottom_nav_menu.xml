@@ -12,13 +12,13 @@
         android:title="Category" />
 
     <item
-    android:id="@+id/navigation_video"
-    android:icon="@drawable/ic_slow_motion_video_black_24dp"
-    android:title="Video" />
-
-    <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="Favorite" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Profile" />
 
 </menu>
