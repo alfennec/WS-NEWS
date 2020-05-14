@@ -38,7 +38,6 @@ public class NewsActivity extends AppCompatActivity {
 
     public static TextView title_news, title_des, time_news, nbr_comments;
 
-    public static FloatingActionButton floating_comment_button;
 
     public static Button btn_comment;
 
@@ -62,7 +61,7 @@ public class NewsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Learning");
+        getSupportActionBar().setTitle("Top News");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -73,7 +72,6 @@ public class NewsActivity extends AppCompatActivity {
         time_news       = (TextView) findViewById(R.id.time_news);
         nbr_comments    = (TextView) findViewById(R.id.nbr_comments);
 
-        floating_comment_button  = (FloatingActionButton) findViewById(R.id.floating_comment_button);
 
         btn_comment     = (Button) findViewById(R.id.btn_comment);
 
@@ -84,9 +82,11 @@ public class NewsActivity extends AppCompatActivity {
 
         ImageView first_image = (ImageView) findViewById(R.id.first_image);
 
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
-        Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).apply(requestOptions).into(first_image);
+        //RequestOptions requestOptions = new RequestOptions();
+        //requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
+        //Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).apply(requestOptions).into(first_image);
+
+        Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).centerCrop().into(first_image);
 
         Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
 

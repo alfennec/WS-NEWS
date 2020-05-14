@@ -32,7 +32,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Daily News");
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -41,16 +40,16 @@ public class HomeActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_category, R.id.navigation_favorite, R.id.navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
 
         /**** tootlbar click button **/
 
-        tb_btn_account = (ImageButton) findViewById(R.id.tb_btn_account);
-        tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
+        //tb_btn_account = (ImageButton) findViewById(R.id.tb_btn_account);
+        //tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
 
-        tb_btn_search.setOnClickListener(new View.OnClickListener()
+        /*tb_btn_search.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -58,6 +57,6 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(main, SearchActivity.class);
                 main.startActivity(intent);
             }
-        });
+        });*/
     }
 }

@@ -5,24 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
+    <!--androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorMain"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
-
-        <ImageButton
-            android:id="@+id/tb_btn_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            app:srcCompat="@drawable/ic_account_box_black_24dp"
-            android:tint="@color/colorBlanc"
-            android:background="@null"
-            android:layout_gravity="right"/>
 
         <ImageButton
             android:id="@+id/tb_btn_search"
@@ -30,12 +20,12 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             app:srcCompat="@drawable/ic_search_black_24dp"
-            android:tint="@color/colorBlanc"
+            android:tint="@color/colorPrimary"
             android:background="@null"
             android:layout_gravity="right" />
 
 
-    </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

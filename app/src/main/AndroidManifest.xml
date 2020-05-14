@@ -41,7 +41,9 @@
             android:name=".controller.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.MainActivity" />
+        <activity
+            android:name=".controller.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

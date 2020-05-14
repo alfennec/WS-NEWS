@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -13,11 +14,12 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
 
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorGrey"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme">
 
@@ -33,11 +35,11 @@
                 android:layout_gravity="right"/>
 
             <ImageButton
-                android:id="@+id/tb_btn_favorit"
+                android:id="@+id/tb_btn_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                app:srcCompat="@drawable/ic_favorite_black_24dp"
+                app:srcCompat="@drawable/ic_bookmark_border_black_24dp"
                 android:tint="@color/colorBlanc"
                 android:background="@null"
                 android:layout_gravity="right" />
@@ -45,12 +47,9 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:padding="5dp">
+            android:layout_height="280dp">
 
             <ImageView
                 android:id="@+id/first_image"
@@ -60,26 +59,54 @@
 
         </RelativeLayout>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_comment_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginTop="-35dp"
-            android:layout_marginRight="35dp"
-            app:srcCompat="@drawable/ic_comment_black_24dp"
-            android:tint="@color/colorBlanc"
-            app:backgroundTint="@color/colorPrimaryDark"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical"
             android:padding="10dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:paddingHorizontal="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Top News"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorBlanc"
+                    android:background="@drawable/rounded_category"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/time_image"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/colorGrey"
+                    app:srcCompat="@drawable/ic_access_time_black_24dp"
+                    android:layout_toLeftOf="@id/time_news"
+                    android:layout_marginRight="5dp"/>
+
+                <TextView
+                    android:id="@+id/time_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="avril 03, 2020"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorGrey"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/title_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,11 +114,18 @@
                 android:gravity="center"
                 android:text="2020 census extended due to low participation, COVID-19"
                 android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorGrey"
                 android:textStyle="bold"
                 android:layout_marginBottom="10sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -99,24 +133,25 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/time_image"
+                    android:id="@+id/pincil"
                     android:layout_width="15dp"
                     android:layout_height="20dp"
-                    android:tint="@color/colorGrey"
-                    app:srcCompat="@drawable/ic_access_time_black_24dp" />
+                    android:layout_weight="1"
+                    android:tint="@color/colorAccent"
+                    app:srcCompat="@drawable/ic_edit_black_24dp" />
 
                 <TextView
-                    android:id="@+id/time_news"
+                    android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="avril 03, 2020"
+                    android:text="Berrahal Mohammed"
                     android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorGrey"
-                    android:layout_toRightOf="@id/time_image"
-                    android:layout_marginLeft="5dp"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:tint="@color/colorGrey"
+                    android:layout_toRightOf="@id/pincil"
+                    />
 
                 <ImageView
                     android:id="@+id/comment_image"
@@ -124,8 +159,8 @@
                     android:layout_height="20dp"
                     android:tint="@color/colorGrey"
                     app:srcCompat="@drawable/ic_comment_black_24dp"
-                    android:layout_toRightOf="@id/time_news"
-                    android:layout_marginLeft="20sp"/>
+                    android:layout_toLeftOf="@+id/nbr_comments"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:id="@+id/nbr_comments"
@@ -134,10 +169,8 @@
                     android:gravity="center"
                     android:text="16"
                     android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp"
-                    android:layout_toRightOf="@id/comment_image"
-                    android:layout_marginLeft="5dp"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <View
@@ -157,8 +190,8 @@
                 android:gravity="center"
                 android:text="@string/large_text"
                 android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorGrey"
                 android:textSize="16dp" />
 
             <Button
@@ -169,9 +202,9 @@
                 android:layout_margin="5dp"
                 android:text="Read 16 Comments"
                 android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorGrey"
                 android:background="@null"/>
 
             <TextView
@@ -181,8 +214,8 @@
                 android:gravity="center"
                 android:text="Suggested"
                 android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:textColor="@color/colorGrey"
                 android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView

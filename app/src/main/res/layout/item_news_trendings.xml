@@ -6,13 +6,13 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="5dp"
-        android:padding="2dp">
+        android:layout_marginTop="5dp">
 
         <ImageView
             android:id="@+id/image_news"
@@ -61,9 +61,10 @@
                 android:gravity="center"
                 android:text="Top News"
                 android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="10dp"
                 android:textColor="@color/colorBlanc"
                 android:background="@drawable/rounded_category"
+                android:textStyle="bold"
                 />
 
             <TextView

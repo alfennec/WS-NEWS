@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.fennec.dailynews.controller.ui.category.CategoryFragment;
+import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.repository.CategoryRepository;
 import com.fennec.dailynews.repository.NewsRepository;
 import com.koushikdutta.async.future.FutureCallback;
@@ -55,7 +56,7 @@ public class CategoryJson {
         {
             case 1: getSuccess(result); break;
 
-            case 2: deleteSuccess(); break;
+            case 2: getSuccess_home(result); break;
 
             default : break;
         }
@@ -69,8 +70,11 @@ public class CategoryJson {
         }
     }
 
-    public void deleteSuccess()
+    public void getSuccess_home(String result)
     {
-
+        if(CategoryRepository.ParseData(result))
+        {
+            HomeFragment.onSuccesCategory();
+        }
     }
 }

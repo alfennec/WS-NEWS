@@ -82,7 +82,7 @@ public class CategoryFragment extends Fragment {
         /** adapter for test we have to improve our self for this app  **/
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(main.getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(new GridLayoutManager(main.main.getContext(), 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(main.main.getContext(), 2));
 
 
         categoryAdapter = new CategoryAdapter(CategoryRepository.list_category);

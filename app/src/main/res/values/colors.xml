@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3483fb</color>
-    <color name="colorPrimaryDark">#3483fb</color>
-    <color name="colorAccent">#3b43e2</color>
+    <color name="colorPrimaryDark">#f1f1f1</color>
+
+    <color name="colorMain">#f1f1f1</color>
+
+    <color name="colorAccent">#808080</color>
     <color name="colorAccentDark">#838997</color>
     <color name="colorBlanc">#ebebf3</color>
 
@@ -14,12 +17,13 @@
     <color name="colorRed">#ec5b53</color>
 
 
-    <color name="placeholder_bg">#dddddd</color>
+    <color name="placeholder_bg">#777</color>
     <color name="item_name">#0c0c0c</color>
     <color name="description">#1a1a1a</color>
     <color name="chef">#777</color>
     <color name="timestamp">#777</color>>
 
+    <color name="red">#ec5b53</color>
     <color name="blue">#0099CC</color>
     <color name="purple">#9933CC</color>
     <color name="green">#669900</color>
