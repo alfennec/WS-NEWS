@@ -17,6 +17,7 @@ import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.NewsActivity;
+import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.entity.News;
 
 import java.util.List;
@@ -85,7 +86,7 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
             @Override
             public void onClick(View view)
             {
-                NewsActivity.to_newIntent(myNews.id);
+                HomeFragment.to_newIntent(myNews.id);
             }
         });
 

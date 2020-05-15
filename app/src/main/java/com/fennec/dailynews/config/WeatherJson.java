@@ -3,28 +3,31 @@ package com.fennec.dailynews.config;
 import android.content.Context;
 import android.util.Log;
 
-import com.fennec.dailynews.controller.ui.favorite.FavoriteFragment;
 import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.repository.NewsRepository;
+import com.fennec.dailynews.repository.WeatherRepository;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
-public class NewsJson {
+public class WeatherJson
+{
 
     public String method;
     public int choice_acty;
 
-    public NewsJson(String link , final Context ctx, String method, int choice_acty)
+    public WeatherJson(String city , final Context ctx, String method, int choice_acty)
     {
-       this.method = method;
-       this.choice_acty = choice_acty;
+        this.method = method;
+        this.choice_acty = choice_acty;
 
-       String Send_link = Constante.url_host+link;
+        String Send_link = Constante.url_weather+city;
 
-        Log.d("TAG", "NewsJson: "+Send_link);
+        Log.d("TAG_WEATHER", "Weather json: "+Send_link);
 
         Ion.with(ctx)
                 .load(Send_link)
+                .setHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
+                .setHeader("x-rapidapi-key", "46f10af993msh5cf8f7799dfd743p1e8e36jsn1db231f33793")
                 .asString()
                 .setCallback(new FutureCallback<String>()
                 {
@@ -34,7 +37,7 @@ public class NewsJson {
                         if(result != null)
                         {
                             mainFunction(result);
-                            //Log.e("TAG_JSON", "onSuccess: result " + result );
+                            //Log.e("TAG_WEATHER", "onSuccess: result " + result );
                         }else
                         {
                             onFailed(e);
@@ -51,34 +54,7 @@ public class NewsJson {
 
     public void mainFunction(String result)
     {
-        switch (choice_acty)
-        {
-            case 1: getSuccess(result); break;
-
-            case 2: getSuccess2(result); break;
-
-            default : break;
-        }
+        WeatherRepository.ParseData(result);
     }
 
-    public void getSuccess(String result)
-    {
-        if(NewsRepository.ParseData(result))
-        {
-            HomeFragment.onSucces();
-        }
-    }
-
-    public void getSuccess2(String result)
-    {
-        if(NewsRepository.ParseData(result))
-        {
-            //FavoriteFragment.onSucces();
-        }
-    }
-
-    public void deleteSuccess()
-    {
-
-    }
 }

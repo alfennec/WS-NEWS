@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.fennec.dailynews.R;
+import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.entity.Category;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class CategoryAdapterHome extends RecyclerView.Adapter<CategoryAdapterHom
 
     public List<Category> list;
     public boolean showAdd = false;
+
+    public static int selected = 0;
 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
@@ -64,22 +67,38 @@ public class CategoryAdapterHome extends RecyclerView.Adapter<CategoryAdapterHom
         final Category myCategory = list.get(position);
         holder.title_category.setText(myCategory.name);
 
-        if(position == 0) holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 3,1f));
-        if(position == 0) holder.divider.setBackgroundColor(Color.rgb(52, 131, 251) );
-
-
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
+
+        if(selected == position)
+        {
+            holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5,1f));
+            holder.divider.setBackgroundColor(Color.rgb(52, 131, 251));
+        }else
+            {
+                holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1,1f));
+                holder.divider.setBackgroundColor(Color.rgb(128, 128, 128));
+            }
 
         holder.parent.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                //CategoryFragment.to_newIntent(myCategory.id);
+                selected = position;
+
+                holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5,1f));
+                holder.divider.setBackgroundColor(Color.rgb(52, 131, 251));
+
+                HomeFragment.updateRecycle(myCategory.id);
+
+                notifyDataSetChanged();
             }
         });
 
+
+
     }
+
 
     @Override
     public int getItemCount()

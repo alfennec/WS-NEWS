@@ -31,6 +31,8 @@ public class CategoryRepository {
 
     public static boolean ParseData(String result)
     {
+
+        list_category.add(new Category(0,"All News","all.png","2020-05-05 01:19:14","2020-05-05 01:19:14"));
         try
         {
             JSONArray jArray = new JSONArray(result);

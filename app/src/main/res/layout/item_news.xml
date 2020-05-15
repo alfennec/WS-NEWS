@@ -36,9 +36,8 @@
                 android:gravity="center"
                 android:text="2020 census extended due to low participation, COVID-19"
                 android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorGrey"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:maxLines="2"/>
@@ -53,7 +52,6 @@
                 android:text="Morroco once-every-10-years national population census has become ..."
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="14sp"
                 android:ellipsize="end"
                 android:maxLines="2"/>
 
@@ -79,8 +77,7 @@
                     android:gravity="center"
                     android:text="avril 03, 2020"
                     android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/colorGrey"/>
 
                 <ImageView
@@ -100,8 +97,8 @@
                     android:gravity="center"
                     android:text="16"
                     android:textAlignment="textStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorGrey"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -2,11 +2,13 @@ package com.fennec.dailynews.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.fennec.dailynews.R;
+import com.fennec.dailynews.config.WeatherJson;
 import com.koushikdutta.ion.Ion;
 
 import java.security.cert.X509Certificate;
@@ -36,6 +38,8 @@ public class SplashActivity extends AppCompatActivity {
                 SplashActivity.this.finish();
             }
         }, time_splash);
+
+        WeatherJson WeatherJson = new WeatherJson("Berkane" , main, "get", 1);
 
 
         /*Ion.getDefault(main).getHttpClient().getSSLSocketMiddleware().setTrustManagers(new TrustManager[][] {new X509TrustManager() {

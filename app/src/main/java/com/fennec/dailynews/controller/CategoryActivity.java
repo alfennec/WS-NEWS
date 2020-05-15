@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.fennec.dailynews.R;
@@ -28,6 +31,8 @@ public class CategoryActivity extends AppCompatActivity {
     public static Category current_category;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    public static ImageButton tb_btn_search;
 
 
     @Override
@@ -54,7 +59,13 @@ public class CategoryActivity extends AppCompatActivity {
         LinearLayoutManager lm = new LinearLayoutManager(main, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(lm);
 
-        newsAdapter = new NewsAdapter(NewsRepository.getNewsWhereIdCat(idCat));
+        if(idCat == 0)
+        {
+            newsAdapter = new NewsAdapter(NewsRepository.list_news);
+        }else
+            {
+                newsAdapter = new NewsAdapter(NewsRepository.getNewsWhereIdCat(idCat));
+            }
         recyclerView.setAdapter(newsAdapter);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
@@ -73,6 +84,19 @@ public class CategoryActivity extends AppCompatActivity {
         });
 
         mSwipeRefreshLayout.setColorScheme(R.color.blue, R.color.purple, R.color.green, R.color.orange);
+
+
+        tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
+
+        tb_btn_search.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(main, SearchActivity.class);
+                main.startActivity(i);
+            }
+        });
     }
 
     @Override

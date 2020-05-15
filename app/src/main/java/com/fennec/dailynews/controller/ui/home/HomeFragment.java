@@ -36,8 +36,15 @@ import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.NewsActivity;
 import com.fennec.dailynews.repository.CategoryRepository;
 import com.fennec.dailynews.repository.NewsRepository;
+import com.fennec.dailynews.repository.WeatherRepository;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
@@ -60,6 +67,9 @@ public class HomeFragment extends Fragment {
 
     public static ShimmerFrameLayout shimmerContainer;
 
+    public static ImageView weather_img;
+    public static TextView tv_temp, tv_firstText;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -70,6 +80,26 @@ public class HomeFragment extends Fragment {
 
         shimmerContainer = (ShimmerFrameLayout) root.findViewById(R.id.shimmer_view_container);
         shimmerContainer.startShimmerAnimation();
+
+        /***** set the weather **/
+
+        tv_firstText = (TextView) root.findViewById(R.id.tv_firstText);
+
+        SimpleDateFormat  sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+
+        if(Convert24to12(currentDateandTime).contains("AM"))
+        {
+            tv_firstText.setText("Morning, Dear");
+        }else{
+            tv_firstText.setText("Evening, Dear");
+        }
+
+        weather_img = (ImageView) root.findViewById(R.id.weather_img);
+        tv_temp = (TextView) root.findViewById(R.id.tv_temp);
+
+        Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/"+ WeatherRepository.img +".png").into(weather_img);
+        tv_temp.setText(WeatherRepository.temp+"°C");
 
 
         /** clear data for update data **/
@@ -110,6 +140,7 @@ public class HomeFragment extends Fragment {
 
         CategoryAdapter = new CategoryAdapterHome(CategoryRepository.list_category);
         recyclerView2.setAdapter(CategoryAdapter);
+
         /** adapter for test we have to improve our self for this end  **/
 
         /** adapter for test we have to improve our self for this app  **/
@@ -133,5 +164,50 @@ public class HomeFragment extends Fragment {
         Intent i = new Intent(main.getContext(), NewsActivity.class);
         i.putExtra("id",id);
         main.startActivity(i);
+    }
+
+    public static void updateRecycle(int idCat)
+    {
+        if(idCat == 0)
+        {
+            /** adapter for test we have to improve our self for this app  **/
+            recyclerView3 = (RecyclerView) root.findViewById(R.id.recyclerView3);
+            LinearLayoutManager lm = new LinearLayoutManager(main.getContext(), LinearLayoutManager.VERTICAL, false);
+            recyclerView3.setLayoutManager(lm);
+
+            newsSuggestedAdapter = new NewsSuggestedAdapter(NewsRepository.list_news);
+            recyclerView3.setAdapter(newsSuggestedAdapter);
+
+            recyclerView3.setNestedScrollingEnabled(false);
+            /** adapter for test we have to improve our self for this end  **/
+        }else
+            {
+                /** adapter for test we have to improve our self for this app  **/
+                recyclerView3 = (RecyclerView) root.findViewById(R.id.recyclerView3);
+                LinearLayoutManager lm = new LinearLayoutManager(main.getContext(), LinearLayoutManager.VERTICAL, false);
+                recyclerView3.setLayoutManager(lm);
+
+                newsSuggestedAdapter = new NewsSuggestedAdapter(NewsRepository.getNewsWhereIdCat(idCat));
+                recyclerView3.setAdapter(newsSuggestedAdapter);
+
+                recyclerView3.setNestedScrollingEnabled(false);
+                /** adapter for test we have to improve our self for this end  **/
+            }
+    }
+
+    public static String Convert24to12(String time)
+    {
+        String convertedTime ="";
+        try {
+            SimpleDateFormat displayFormat = new SimpleDateFormat("hh:mm a");
+            SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm:ss");
+            Date date = parseFormat.parse(time);
+            convertedTime=displayFormat.format(date);
+            System.out.println("convertedTime : "+convertedTime);
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
+        return convertedTime;
+//Output will be 10:23 PM
     }
 }

@@ -102,4 +102,19 @@ public class NewsRepository {
 
         return newsString;
     }
+
+    public static ArrayList<News> getKeyword(String keyword)
+    {
+        ArrayList<News> current_news = new ArrayList<>();
+
+        for (int i = 0; i < list_news.size(); i++)
+        {
+            if(list_news.get(i).title.toLowerCase().contains(keyword.toLowerCase()))
+            {
+                current_news.add(list_news.get(i));
+            }
+        }
+
+        return current_news;
+    }
 }
