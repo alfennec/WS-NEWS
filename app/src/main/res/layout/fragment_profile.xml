@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_welcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome , dear !"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/tv_under"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Not Member ?"
@@ -59,7 +59,18 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"
-                        android:layout_toRightOf="@id/textView6"
+                        android:layout_toRightOf="@id/tv_under"
+                        android:background="@null"/>
+
+                    <Button
+                        android:id="@+id/btn_editProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:text="Edit profils"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/tv_under"
                         android:background="@null"/>
 
                 </RelativeLayout>
@@ -199,6 +210,16 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/blue_rounded"
             android:text="Sign In"
+            android:textColor="@color/colorBlanc" />
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:id="@+id/btn_lougout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/blue_rounded"
+            android:text="Logout"
             android:textColor="@color/colorBlanc" />
 
 

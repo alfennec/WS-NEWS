@@ -9,23 +9,43 @@
         android:id="@+id/navigation_home"
         android:name="com.fennec.dailynews.controller.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_category"
+            app:destination="@id/navigation_category" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_category"
         android:name="com.fennec.dailynews.controller.ui.category.CategoryFragment"
         android:label="Category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_navigation_category_to_navigation_favorite"
+            app:destination="@id/navigation_favorite"
+            app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"
         android:name="com.fennec.dailynews.controller.ui.favorite.FavoriteFragment"
         android:label="Favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+
+        <action
+            android:id="@+id/action_navigation_favorite_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.fennec.dailynews.controller.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

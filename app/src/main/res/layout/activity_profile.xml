@@ -28,14 +28,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round"
+                app:srcCompat="@drawable/ic_account_circle_black_24dp"
+                android:tint="@color/colorAccent"
                 android:layout_marginBottom="20dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sign Up"
+                android:text="Profile"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
@@ -79,43 +80,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="City" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/textView_sexe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sexe" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-
-                    <RadioButton
-                        android:id="@+id/radioButton_homme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Male" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton_femme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Femal" />
-                </RadioGroup>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -161,29 +126,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="By creating an account, you agree with our"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/colorGrey"
-                    android:textStyle="bold"
-                    android:background="@null"
-                    android:layout_marginTop="15dp"
-                    android:layout_gravity="center"/>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Terms &amp; Privacy"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:background="@null"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"/>
-
-
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -197,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="SIGN UP"
+            android:text="Submit"
             android:textColor="#fff"
             android:textSize="18sp"
             android:background="@drawable/blue_rounded"

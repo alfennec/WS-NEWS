@@ -2,6 +2,7 @@ package com.fennec.dailynews.controller.ui.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.NewsActivity;
 import com.fennec.dailynews.repository.CategoryRepository;
 import com.fennec.dailynews.repository.NewsRepository;
+import com.fennec.dailynews.repository.UserRepository;
 import com.fennec.dailynews.repository.WeatherRepository;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -45,6 +47,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomeFragment extends Fragment {
 
@@ -64,6 +68,7 @@ public class HomeFragment extends Fragment {
     public static NewsSuggestedAdapter newsSuggestedAdapter;
 
     public static ProgressDialog dialog;
+    public static SweetAlertDialog pDialog;
 
     public static ShimmerFrameLayout shimmerContainer;
 
@@ -81,6 +86,7 @@ public class HomeFragment extends Fragment {
         shimmerContainer = (ShimmerFrameLayout) root.findViewById(R.id.shimmer_view_container);
         shimmerContainer.startShimmerAnimation();
 
+
         /***** set the weather **/
 
         tv_firstText = (TextView) root.findViewById(R.id.tv_firstText);
@@ -90,9 +96,19 @@ public class HomeFragment extends Fragment {
 
         if(Convert24to12(currentDateandTime).contains("AM"))
         {
-            tv_firstText.setText("Morning, Dear");
+            if(!UserRepository.EXIST)
+            {
+                tv_firstText.setText("Morning, Dear");
+            }else {
+                 tv_firstText.setText("Morning, "+UserRepository.main_User.name);
+            }
         }else{
-            tv_firstText.setText("Evening, Dear");
+            if(!UserRepository.EXIST)
+            {
+                tv_firstText.setText("Evening, Dear");
+            }else {
+                tv_firstText.setText("Evening, "+UserRepository.main_User.name);
+            }
         }
 
         weather_img = (ImageView) root.findViewById(R.id.weather_img);
@@ -111,7 +127,13 @@ public class HomeFragment extends Fragment {
         CategoryJson categoryJson = new CategoryJson("category",inflater.getContext(), "get", 2);
 
         shimmerContainer.startShimmerAnimation();
-        dialog = ProgressDialog.show(inflater.getContext(), "", "Loading data ...", true);
+       //dialog = ProgressDialog.show(inflater.getContext(), "", "Loading data ...", true);
+
+        pDialog = new SweetAlertDialog(main.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#3483fb"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
 
         return root;
@@ -154,7 +176,7 @@ public class HomeFragment extends Fragment {
         recyclerView3.setNestedScrollingEnabled(false);
         /** adapter for test we have to improve our self for this end  **/
 
-        dialog.dismiss();
+        pDialog.dismiss();
         shimmerContainer.stopShimmerAnimation();
         shimmerContainer.setVisibility(View.GONE);
     }

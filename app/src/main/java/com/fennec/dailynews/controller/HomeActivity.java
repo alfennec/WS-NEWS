@@ -1,12 +1,14 @@
 package com.fennec.dailynews.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.fennec.dailynews.R;
+import com.fennec.dailynews.repository.UserRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,8 @@ public class HomeActivity extends AppCompatActivity {
     public static HomeActivity main;
 
     public static ImageButton tb_btn_search, tb_btn_account;
+
+    public static String MY_PREFS_NAME = "first_log";
 
 
     @Override
@@ -58,5 +62,26 @@ public class HomeActivity extends AppCompatActivity {
                 main.startActivity(intent);
             }
         });*/
+    }
+
+    public static void quitter()
+    {
+        SharedPreferences prefs = main.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit= prefs.edit();
+
+        edit.putInt("id", 0);
+        edit.putString("email", "vide");
+        edit.putString("name", "vide");
+        edit.putString("password", "vide");
+        edit.putString("status", "vide");
+
+        UserRepository.main_User.id = 0;
+        UserRepository.main_User.name = "vide";
+        UserRepository.main_User.email = "vide";
+        UserRepository.main_User.password = "vide";
+        UserRepository.main_User.status = "vide";
+
+
+        edit.commit();
     }
 }

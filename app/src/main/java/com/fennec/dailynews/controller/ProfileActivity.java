@@ -3,11 +3,11 @@ package com.fennec.dailynews.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -15,20 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fennec.dailynews.R;
-import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.config.UserJson;
+import com.fennec.dailynews.controller.ui.profile.ProfileFragment;
 import com.fennec.dailynews.entity.User;
+import com.fennec.dailynews.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.JsonObject;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
 
-public class RegisterActivity extends AppCompatActivity {
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
+public class ProfileActivity extends AppCompatActivity {
 
-    public static RegisterActivity main;
+    public static ProfileActivity main;
+    public static String MY_PREFS_NAME = "first_log";
 
     public Button button_valide_form;
     public TextView textView_msg;
@@ -39,46 +40,52 @@ public class RegisterActivity extends AppCompatActivity {
     public UserJson userJson;
     public User newUser;
 
-
     public static Boolean all_Right ;
 
-    public static ProgressDialog dialog;
+    public static SweetAlertDialog pDialog;
+
+    public static TextInputLayout input_pass1, input_pass2, input_name, input_email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_profile);
 
         main = this;
 
         inRegistreForm();
+
     }
 
     public void inRegistreForm()
     {
         button_valide_form = (Button) findViewById(R.id.button_valide_form);
 
+        input_pass1 = (TextInputLayout) findViewById(R.id.input_pass1);
+        input_pass2 = (TextInputLayout) findViewById(R.id.input_pass2);
+
+        input_name = (TextInputLayout) findViewById(R.id.input_name);
+        input_email = (TextInputLayout) findViewById(R.id.input_email);
+
+        input_name.getEditText().setText(UserRepository.main_User.name);
+        input_email.getEditText().setText(UserRepository.main_User.email);
+
+        input_pass1.getEditText().setText(UserRepository.main_User.password);
+        input_pass2.getEditText().setText(UserRepository.main_User.password);
+
         button_valide_form.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                TextInputLayout input_pass1 = (TextInputLayout) findViewById(R.id.input_pass1);
-                TextInputLayout input_pass2 = (TextInputLayout) findViewById(R.id.input_pass2);
 
                 String pass1 = input_pass1.getEditText().getText().toString();
                 String pass2 = input_pass2.getEditText().getText().toString();
 
-                TextInputLayout input_name = (TextInputLayout) findViewById(R.id.input_name);
-                TextInputLayout input_city = (TextInputLayout) findViewById(R.id.input_city);
-                TextInputLayout input_email = (TextInputLayout) findViewById(R.id.input_email);
-
-                RadioButton radioButton_homme = (RadioButton) findViewById(R.id.radioButton_homme);
-
                 Date currentTime = Calendar.getInstance().getTime();
 
                 if(verifyIfBlank(input_name)
-                        && verifyIfBlank(input_city)
                         && verifyIfBlank(input_email)
                         && verifyIfBlank(input_pass1)
                         && verifyIfBlank(input_pass2))
@@ -93,28 +100,17 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     if(pass1.equals(pass2))
                     {
-                        int RadioGroupe;
+                        UserRepository.main_User.name = input_name.getEditText().getText().toString();
+                        UserRepository.main_User.email = input_email.getEditText().getText().toString();
+                        UserRepository.main_User.password = input_email.getEditText().getText().toString();
 
-                        if(radioButton_homme.isChecked())
-                        {
-                            RadioGroupe = 1;
-                        }else
-                        {
-                            RadioGroupe = 0;
-                        }
+                        userJson = new UserJson("users?id="+UserRepository.main_User.id, main, "PUT", 3,  UserRepository.main_User);
 
-                        newUser = new User(
-                                input_name.getEditText().getText().toString(),
-                                input_email.getEditText().getText().toString(),
-                                input_pass1.getEditText().getText().toString(),
-                                "enable",
-                                currentTime.toString(),
-                                currentTime.toString()
-                        );
-
-                        userJson = new UserJson("users", main, "POST", 2, newUser);
-
-                        dialog = ProgressDialog.show(main, "", "Data processing. Please wait ...", true);
+                        pDialog = new SweetAlertDialog(main, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#3483fb"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.setCancelable(false);
+                        pDialog.show();
 
                     }else
                     {
@@ -127,20 +123,18 @@ public class RegisterActivity extends AppCompatActivity {
 
     public static void OnSuccesRegistre()
     {
-        dialog.dismiss();
+        pDialog.dismiss();
 
-        //Costum_toast("Inscription faite avec succes");
+        Toast.makeText(main, "Edit profile made successfully ! " , Toast.LENGTH_LONG ).show();
 
-        Toast.makeText(main, "Registration made successfully ! " , Toast.LENGTH_LONG ).show();
-
+        setPref(UserRepository.main_User);
+        ProfileFragment.isExisting();
         main.finish();
     }
 
     public static void OnFailedRegistre()
     {
-        dialog.dismiss();
-
-        //Costum_toast("Erreur veuillez resaisir vos données");
+        pDialog.dismiss();
 
         Toast.makeText(main, "Error please re-enter your data ! " , Toast.LENGTH_LONG ).show();
     }
@@ -155,5 +149,19 @@ public class RegisterActivity extends AppCompatActivity {
             input.setErrorEnabled(false);
             return true;
         }
+    }
+
+    public static void setPref(User current_user)
+    {
+        SharedPreferences prefs = main.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit= prefs.edit();
+
+        edit.putInt("id", current_user.id);
+        edit.putString("email", current_user.email);
+        edit.putString("name", current_user.name);
+        edit.putString("password", current_user.password);
+        edit.putString("status", current_user.status);
+
+        edit.commit();
     }
 }
