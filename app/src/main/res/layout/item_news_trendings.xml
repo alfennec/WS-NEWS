@@ -36,24 +36,41 @@
                 android:layout_gravity="right"
                 android:padding="10dp">
 
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:tint="@color/colorBlanc"
-                    app:srcCompat="@drawable/ic_comment_black_24dp" />
+                <com.balysv.materialripple.MaterialRippleLayout
+                    android:layout_width="20dp"
+                    android:layout_height="20dp">
 
-                <ImageView
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:tint="@color/colorBlanc"
-                    app:srcCompat="@drawable/ic_share_black_24dp" />
+                    <ImageButton
+                        android:id="@+id/comment_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tint="@color/colorBlanc"
+                        app:srcCompat="@drawable/ic_comment_black_24dp"
+                        android:layout_marginRight="3dp"
+                        android:scaleType="fitCenter"
+                        android:background="@null"/>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+                <com.balysv.materialripple.MaterialRippleLayout
+                    android:layout_width="20dp"
+                    android:layout_height="20dp">
+
+                    <ImageButton
+                        android:id="@+id/share_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tint="@color/colorBlanc"
+                        app:srcCompat="@drawable/ic_share_black_24dp"
+                        android:layout_marginRight="3dp"
+                        android:scaleType="fitCenter"
+                        android:background="@null"/>
+
+                </com.balysv.materialripple.MaterialRippleLayout>
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_category"
                 android:paddingHorizontal="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

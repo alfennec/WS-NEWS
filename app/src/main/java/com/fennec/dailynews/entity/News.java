@@ -14,6 +14,8 @@ public class News {
     public String created;
     public String modified;
 
+    public int nbr_comments;
+
     public News() {
     }
 

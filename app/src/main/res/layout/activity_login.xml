@@ -102,7 +102,7 @@
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:text="Forget Password?"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/colorGrey"
@@ -111,7 +111,17 @@
                     android:layout_marginTop="15dp"
                     android:layout_gravity="right"/>
 
-
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Not Member?"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/colorGrey"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="right"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

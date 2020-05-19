@@ -1,7 +1,9 @@
 package com.fennec.dailynews.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,8 +23,6 @@ import androidx.navigation.ui.NavigationUI;
 public class HomeActivity extends AppCompatActivity {
 
     public static HomeActivity main;
-
-    public static ImageButton tb_btn_search, tb_btn_account;
 
     public static String MY_PREFS_NAME = "first_log";
 
@@ -47,21 +47,6 @@ public class HomeActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
-        /**** tootlbar click button **/
-
-        //tb_btn_account = (ImageButton) findViewById(R.id.tb_btn_account);
-        //tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
-
-        /*tb_btn_search.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(main, SearchActivity.class);
-                main.startActivity(intent);
-            }
-        });*/
     }
 
     public static void quitter()
@@ -83,5 +68,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
         edit.commit();
+    }
+
+    public static boolean isNetworkConnected()
+    {
+        ConnectivityManager cm = (ConnectivityManager) main.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }

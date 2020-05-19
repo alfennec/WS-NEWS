@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public static String MY_PREFS_NAME = "first_log";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shimmer_test);
         main = this;

@@ -45,5 +45,6 @@ dependencies {
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:1.1.0"
     implementation "androidx.navigation:navigation-ui:1.1.0"
+    implementation 'com.balysv:material-ripple:1.0.2'
 
 }

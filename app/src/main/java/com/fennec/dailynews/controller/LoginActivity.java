@@ -124,6 +124,9 @@ public class LoginActivity extends AppCompatActivity {
         edit.commit();
 
         ProfileFragment.isExisting();
+
+        UserRepository.EXIST = true;
+
         main.finish();
 
     }

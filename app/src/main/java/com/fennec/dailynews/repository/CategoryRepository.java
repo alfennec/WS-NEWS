@@ -32,7 +32,7 @@ public class CategoryRepository {
     public static boolean ParseData(String result)
     {
 
-        list_category.add(new Category(0,"All News","all.png","2020-05-05 01:19:14","2020-05-05 01:19:14"));
+        list_category.add(new Category(0,"All News","all.png","#3483fb","2020-05-05 01:19:14","2020-05-05 01:19:14"));
         try
         {
             JSONArray jArray = new JSONArray(result);
@@ -48,6 +48,7 @@ public class CategoryRepository {
                     json_category.id                = Integer.parseInt(oneObject.getString("id"));
                     json_category.name              = oneObject.getString("name");
                     json_category.image             = oneObject.getString("image");
+                    json_category.bkcolor           = oneObject.getString("bkcolor");
                     json_category.created           = oneObject.getString("created");
                     json_category.modified          = oneObject.getString("modified");
 

@@ -2,7 +2,6 @@ package com.fennec.dailynews.repository;
 
 import android.util.Log;
 
-import com.fennec.dailynews.entity.News;
 import com.fennec.dailynews.entity.User;
 
 import org.json.JSONArray;

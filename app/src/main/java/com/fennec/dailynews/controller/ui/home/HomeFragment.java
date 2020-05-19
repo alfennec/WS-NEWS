@@ -1,8 +1,10 @@
 package com.fennec.dailynews.controller.ui.home;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -85,7 +87,6 @@ public class HomeFragment extends Fragment {
 
         shimmerContainer = (ShimmerFrameLayout) root.findViewById(R.id.shimmer_view_container);
         shimmerContainer.startShimmerAnimation();
-
 
         /***** set the weather **/
 
@@ -230,6 +231,6 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
         return convertedTime;
-//Output will be 10:23 PM
+        //Output will be 10:23 PM
     }
 }

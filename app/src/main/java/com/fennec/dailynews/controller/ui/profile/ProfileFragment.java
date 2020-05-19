@@ -95,6 +95,8 @@ public class ProfileFragment extends Fragment {
                                 HomeActivity.quitter();
                                 notExisting();
 
+                                UserRepository.EXIST = false;
+
                                 sDialog.dismissWithAnimation();
                             }
                         })

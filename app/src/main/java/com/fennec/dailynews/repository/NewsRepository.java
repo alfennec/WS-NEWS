@@ -30,6 +30,23 @@ public class NewsRepository {
         return current_news;
     }
 
+    public static int getCountByIdCat(int idCat)
+    {
+        int count = 0;
+
+        if(idCat == 0) return list_news.size();
+
+        for (int i = 0; i < list_news.size(); i++)
+        {
+            if(list_news.get(i).id_category == idCat)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static ArrayList<News> getNewsWhereIdCat(int idCat)
     {
         ArrayList<News> current_list = new ArrayList<>();
@@ -70,6 +87,7 @@ public class NewsRepository {
                     json_news.news_link         = oneObject.getString("news_link");
                     json_news.created           = oneObject.getString("created");
                     json_news.modified          = oneObject.getString("modified");
+                    json_news.nbr_comments      = Integer.parseInt(oneObject.getString("nbr_comments"));
 
 
                 }

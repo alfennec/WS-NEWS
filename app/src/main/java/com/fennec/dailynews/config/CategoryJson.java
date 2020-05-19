@@ -35,7 +35,7 @@ public class CategoryJson {
                         if(result != null)
                         {
                             mainFunction(result);
-                            //Log.e("TAG_JSON", "onSuccess: result " + result );
+                            Log.e("TAG_CATEGORY", "onSuccess: result " + result );
                         }else
                         {
                             onFailed(e);
