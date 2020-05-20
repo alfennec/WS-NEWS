@@ -37,7 +37,7 @@ public class WeatherJson
                         if(result != null)
                         {
                             mainFunction(result);
-                            //Log.e("TAG_WEATHER", "onSuccess: result " + result );
+                            Log.e("TAG_WEATHER", "onSuccess: result " + result );
                         }else
                         {
                             onFailed(e);

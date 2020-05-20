@@ -6,11 +6,8 @@ import android.util.Log;
 import com.fennec.dailynews.controller.LoginActivity;
 import com.fennec.dailynews.controller.ProfileActivity;
 import com.fennec.dailynews.controller.RegisterActivity;
-import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.entity.User;
-import com.fennec.dailynews.repository.NewsRepository;
 import com.fennec.dailynews.repository.UserRepository;
-import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 

@@ -2,6 +2,7 @@ package com.fennec.dailynews.controller.ui.category;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,8 @@ import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.repository.CategoryRepository;
 import com.fennec.dailynews.repository.NewsRepository;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class CategoryFragment extends Fragment {
 
     private CategoryViewModel categoryViewModel;
@@ -48,7 +51,7 @@ public class CategoryFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static CategoryAdapter categoryAdapter;
 
-    public static ProgressDialog dialog;
+    public static SweetAlertDialog pDialog;
 
     public static ShimmerFrameLayout shimmerContainer;
 
@@ -72,7 +75,11 @@ public class CategoryFragment extends Fragment {
         /** get data for update data **/
         CategoryJson categoryJson = new CategoryJson("category",inflater.getContext(), "get", 1);
 
-        dialog = ProgressDialog.show(inflater.getContext(), "", "Loading data ...", true);
+        pDialog = new SweetAlertDialog(main.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#3483fb"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
         return root;
     }
@@ -89,7 +96,7 @@ public class CategoryFragment extends Fragment {
         recyclerView.setAdapter(categoryAdapter);
         /** adapter for test we have to improve our self for this end  **/
 
-        dialog.dismiss();
+        pDialog.dismiss();
         //shimmerContainer.stopShimmerAnimation();
         //shimmerContainer.setVisibility(View.GONE);
     }

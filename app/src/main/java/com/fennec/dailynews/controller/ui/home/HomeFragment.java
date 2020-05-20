@@ -115,8 +115,13 @@ public class HomeFragment extends Fragment {
         weather_img = (ImageView) root.findViewById(R.id.weather_img);
         tv_temp = (TextView) root.findViewById(R.id.tv_temp);
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/"+ WeatherRepository.img +".png").into(weather_img);
-        tv_temp.setText(WeatherRepository.temp+"°C");
+        //Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/"+ WeatherRepository.img +".png").into(weather_img);
+        //tv_temp.setText(WeatherRepository.temp+"°C");
+
+        Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/02n.png").into(weather_img);
+        tv_temp.setText("25°C");
+
+
 
 
         /** clear data for update data **/

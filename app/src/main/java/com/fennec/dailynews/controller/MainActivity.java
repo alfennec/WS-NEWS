@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.fennec.dailynews.R;
+import com.fennec.dailynews.repository.BookMarkRepository;
 import com.fennec.dailynews.repository.UserRepository;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 {
                     main.finish();
                     startActivity(main.getIntent());
+                }
+            });
+
+            Button bt_markbook = (Button) findViewById(R.id.bt_markbook);
+
+            bt_markbook.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(main, BookmarkActivity.class);
+                    startActivity(intent);
                 }
             });
         }

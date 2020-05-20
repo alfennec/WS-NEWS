@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/GalaxyZooThemeToolbarDarkOverflow"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintStart_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" >
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:layout_marginTop="100sp"
+        android:id="@+id/imageView3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/ic_bookmark_black_24dp"
+        android:layout_gravity="center"
+        android:tint="@color/colorGrey"/>
+
+    <TextView
+        android:layout_marginTop="30sp"
+        android:id="@+id/textView4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Oops, no news found in your bookmark !!!"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="10sp"
+        android:id="@+id/textView5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Try saving some news to bookmark that you can read without an internet connection"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+</LinearLayout>

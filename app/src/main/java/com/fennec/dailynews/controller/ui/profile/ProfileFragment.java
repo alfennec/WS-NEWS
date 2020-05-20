@@ -1,8 +1,6 @@
 package com.fennec.dailynews.controller.ui.profile;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.LoginActivity;
-import com.fennec.dailynews.controller.NewsActivity;
 import com.fennec.dailynews.controller.ProfileActivity;
 import com.fennec.dailynews.controller.RegisterActivity;
 import com.fennec.dailynews.repository.UserRepository;

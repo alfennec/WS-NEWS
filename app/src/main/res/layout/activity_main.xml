@@ -37,6 +37,21 @@
         app:layout_constraintVertical_bias="0.050000012" />
 
     <Button
+        android:id="@+id/bt_markbook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Go to your bookmark "
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:background="@null"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_rafraichir"
+        app:layout_constraintStart_toStartOf="@+id/btn_rafraichir"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rafraichir" />
+
+    <Button
         android:id="@+id/btn_rafraichir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,8 +66,10 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.303" />
 
     <ImageView
         android:id="@+id/imageView"

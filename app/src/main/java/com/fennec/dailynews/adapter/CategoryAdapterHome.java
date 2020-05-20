@@ -72,7 +72,7 @@ public class CategoryAdapterHome extends RecyclerView.Adapter<CategoryAdapterHom
         if(selected == position)
         {
             holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5,1f));
-            holder.divider.setBackgroundColor(Color.rgb(52, 131, 251));
+            holder.divider.setBackgroundColor(Color.parseColor("#ec5b53"));
         }else
             {
                 holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1,1f));
@@ -87,7 +87,7 @@ public class CategoryAdapterHome extends RecyclerView.Adapter<CategoryAdapterHom
                 selected = position;
 
                 holder.divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 5,1f));
-                holder.divider.setBackgroundColor(Color.rgb(52, 131, 251));
+                holder.divider.setBackgroundColor(Color.parseColor("#ec5b53"));
 
                 HomeFragment.updateRecycle(myCategory.id);
 
