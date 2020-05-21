@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public static SweetAlertDialog pDialog;
 
-    public static TextInputLayout input_pass1, input_pass2, input_name, input_email;
+    public static TextInputLayout input_pass1, input_pass2, input_fname, input_lname, input_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,10 +65,11 @@ public class ProfileActivity extends AppCompatActivity {
         input_pass1 = (TextInputLayout) findViewById(R.id.input_pass1);
         input_pass2 = (TextInputLayout) findViewById(R.id.input_pass2);
 
-        input_name = (TextInputLayout) findViewById(R.id.input_name);
+        input_fname = (TextInputLayout) findViewById(R.id.input_fname);
+        input_lname = (TextInputLayout) findViewById(R.id.input_lname);
         input_email = (TextInputLayout) findViewById(R.id.input_email);
 
-        input_name.getEditText().setText(UserRepository.main_User.name);
+        input_fname.getEditText().setText(UserRepository.main_User.name);
         input_email.getEditText().setText(UserRepository.main_User.email);
 
         input_pass1.getEditText().setText(UserRepository.main_User.password);
@@ -85,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 Date currentTime = Calendar.getInstance().getTime();
 
-                if(verifyIfBlank(input_name)
+                if(verifyIfBlank(input_fname)
                         && verifyIfBlank(input_email)
                         && verifyIfBlank(input_pass1)
                         && verifyIfBlank(input_pass2))
@@ -100,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     if(pass1.equals(pass2))
                     {
-                        UserRepository.main_User.name = input_name.getEditText().getText().toString();
+                        UserRepository.main_User.name = input_fname.getEditText().getText().toString();
                         UserRepository.main_User.email = input_email.getEditText().getText().toString();
                         UserRepository.main_User.password = input_email.getEditText().getText().toString();
 

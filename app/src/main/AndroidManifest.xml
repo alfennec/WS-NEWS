@@ -20,8 +20,17 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
-            android:name=".controller.BookmarkActivity"
+            android:name=".controller.ForgetPassActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controller.BookNewsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.BookmarkActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.CommentsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

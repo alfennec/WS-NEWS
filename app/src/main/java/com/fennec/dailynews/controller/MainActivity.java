@@ -65,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        /*** add news from bookmark ***/
+
+        boolean isFilePresent = BookMarkRepository.isFilePresent(main, "storage.json");
+        if(isFilePresent)
+        {
+            String jsonString = BookMarkRepository.read(main, "storage.json");
+            //do the json parsing here and do the rest of functionality of app
+            Log.d("TAG-FILE", "read file "+jsonString);
+
+            if(BookMarkRepository.ParseData(jsonString))
+            {
+                Log.d("TAG-FILE", "read file ------------- add to list success");
+            }
+
+            Log.d("TAG-FILE", "read file ------------- "+BookMarkRepository.list_news.size());
+        }
     }
 
     private boolean isNetworkConnected()

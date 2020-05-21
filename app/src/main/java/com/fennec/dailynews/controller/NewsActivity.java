@@ -1,6 +1,8 @@
 package com.fennec.dailynews.controller;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -10,9 +12,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fennec.dailynews.adapter.NewsAdapter;
 import com.fennec.dailynews.adapter.NewsSuggestedAdapter;
 import com.fennec.dailynews.config.Constante;
+import com.fennec.dailynews.config.ImageSaver;
 import com.fennec.dailynews.entity.Category;
 import com.fennec.dailynews.entity.News;
 import com.fennec.dailynews.repository.BookMarkRepository;
@@ -28,6 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +42,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fennec.dailynews.R;
+
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -56,6 +65,10 @@ public class NewsActivity extends AppCompatActivity {
 
     public static News current_news;
 
+    public static Bitmap newsImage;
+
+    public static ImageView first_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,7 +77,8 @@ public class NewsActivity extends AppCompatActivity {
 
         main = this;
 
-        idNews = getIntent().getIntExtra("id",0);
+        idNews  = getIntent().getIntExtra("id",0);
+
         current_news = NewsRepository.getById(idNews);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,30 +99,33 @@ public class NewsActivity extends AppCompatActivity {
         btn_comment     = (Button) findViewById(R.id.btn_comment);
         comment_image   = (ImageButton) findViewById(R.id.comment_image);
 
+
+
         title_news.setText(current_news.title);
         title_des.setText(current_news.description);
         time_news.setText(current_news.date_news);
         nbr_comments.setText(""+current_news.nbr_comments);
 
-        tv_category.setText(CategoryRepository.getById(current_news.id_category).name);
+        btn_comment.setText("Read "+current_news.nbr_comments+" Comments");
 
+        tv_category.setText(CategoryRepository.getById(current_news.id_category).name);
 
         GradientDrawable shape =  new GradientDrawable();
         shape.setCornerRadius(8);
         shape.setColor(Color.parseColor(CategoryRepository.getById(current_news.id_category).bkcolor));
-
         tv_category.setBackground(shape);
 
-
-        ImageView first_image = (ImageView) findViewById(R.id.first_image);
-
-        //RequestOptions requestOptions = new RequestOptions();
-        //requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
-        //Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).apply(requestOptions).into(first_image);
-
+        first_image = (ImageView) findViewById(R.id.first_image);
         Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).centerCrop().into(first_image);
 
-        Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
+        /*try
+        {
+            URL imageurl = new URL(Constante.url_host+"images/"+current_news.news_photo);
+            Bitmap bitmap = BitmapFactory.decodeStream(imageurl.openConnection().getInputStream());
+
+            //Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
+        }catch (Exception e){}*/
+
 
 
         /*** suggestion part **/
@@ -155,24 +172,56 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                new SweetAlertDialog(main, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Add the news into your bookmark")
-                        .setConfirmText("Yes")
-                        .setCancelText("No")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
-                        {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog)
+                if(!BookMarkRepository.ifExist(current_news))
+                {
+                    new SweetAlertDialog(main, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Are you sure?")
+                            .setContentText("Add the news into your bookmark")
+                            .setConfirmText("Yes")
+                            .setCancelText("No")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
                             {
-                                sDialog.dismissWithAnimation();
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog)
+                                {
+                                    BookMarkRepository.list_news.add(current_news);
 
-                                BookMarkRepository.list_news.add(current_news);
+
+                                    ImageSaver imageSaver = new ImageSaver(main, "images", current_news.news_photo);
+                                    imageSaver.save(newsImage);
+
+                                    boolean isFilePresent = BookMarkRepository.isFilePresent(main, "storage.json");
+
+                                    isFilePresent = true;
+
+                                    Log.d("TAG-FILE", "storage.json je suis dehord "+isFilePresent);
+
+                                    if(isFilePresent)
+                                    {
+                                        boolean isFileCreated = BookMarkRepository.create(main, "storage.json", BookMarkRepository.ArrayToJson());
+                                        if(isFileCreated)
+                                        {
+                                            //proceed with storing the first todo  or show ui
+                                            Log.d("TAG-FILE", "storage.json created " + BookMarkRepository.ArrayToJson());
+                                        } else {
+                                            //show error or try again.
+                                            Log.d("TAG-FILE", "storage.json not created " + BookMarkRepository.ArrayToJson());
+                                        }
+                                    }
+
+                                    sDialog.dismissWithAnimation();
+                                }
+                            })
+                            .show();
+                }else
+                    {
+                        new SweetAlertDialog(main, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText("News already saved in the bookmark")
+                                .show();
+                    }
 
 
-                            }
-                        })
-                        .show();
             }
         });
 

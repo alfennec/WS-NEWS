@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public User jsonUser;
 
+    public Button btn_forget, btn_register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         input_pass  = (TextInputLayout) findViewById(R.id.input_pass);
 
         Button Button_valider = (Button) findViewById(R.id.button_valide_form);
+
+        btn_forget = (Button) findViewById(R.id.btn_forget);
+        btn_register = (Button) findViewById(R.id.btn_register);
 
 
         Button_valider.setOnClickListener(new View.OnClickListener()
@@ -87,6 +92,25 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     OnFailedLogin();
                 }
+            }
+        });
+
+        btn_forget.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+
+        btn_register.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

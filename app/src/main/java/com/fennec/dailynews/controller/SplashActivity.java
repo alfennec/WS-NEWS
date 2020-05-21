@@ -23,7 +23,7 @@ import javax.security.cert.CertificateException;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public static int time_splash = 5000;
+    public static int time_splash = 1000;
     public static SplashActivity main;
 
     @Override

@@ -69,16 +69,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass1 = input_pass1.getEditText().getText().toString();
                 String pass2 = input_pass2.getEditText().getText().toString();
 
-                TextInputLayout input_name = (TextInputLayout) findViewById(R.id.input_name);
-                TextInputLayout input_city = (TextInputLayout) findViewById(R.id.input_city);
+                TextInputLayout input_fname = (TextInputLayout) findViewById(R.id.input_fname);
+                TextInputLayout input_lname = (TextInputLayout) findViewById(R.id.input_lname);
                 TextInputLayout input_email = (TextInputLayout) findViewById(R.id.input_email);
 
                 RadioButton radioButton_homme = (RadioButton) findViewById(R.id.radioButton_homme);
 
                 Date currentTime = Calendar.getInstance().getTime();
 
-                if(verifyIfBlank(input_name)
-                        && verifyIfBlank(input_city)
+                if(verifyIfBlank(input_fname)
+                        && verifyIfBlank(input_lname)
                         && verifyIfBlank(input_email)
                         && verifyIfBlank(input_pass1)
                         && verifyIfBlank(input_pass2))
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
 
                         newUser = new User(
-                                input_name.getEditText().getText().toString(),
+                                input_fname.getEditText().getText().toString(),
                                 input_email.getEditText().getText().toString(),
                                 input_pass1.getEditText().getText().toString(),
                                 "enable",
