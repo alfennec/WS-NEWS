@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
+import com.fennec.dailynews.config.DateConfig;
 import com.fennec.dailynews.controller.BookmarkActivity;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.ui.category.CategoryFragment;
@@ -34,9 +35,11 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
     public List<News> list;
     public boolean showAdd = false;
 
+    public int myViewType;
+
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView title_news,description_news,time_news,nbr_comments,tv_category;
+        public TextView title_news,description_news,time_news,tv_nbr_comment,tv_category, tv_wname;
         public ImageView image_news;
         public View parent;
         public RecyclerView recyclerView;
@@ -48,8 +51,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
             title_news = (TextView) view.findViewById(R.id.title_news);
             description_news = (TextView) view.findViewById(R.id.description_news);
             time_news = (TextView) view.findViewById(R.id.time_news);
-            nbr_comments = (TextView) view.findViewById(R.id.nbr_comments);
+            tv_nbr_comment = (TextView) view.findViewById(R.id.tv_nbr_comment);
             image_news = (ImageView) view.findViewById(R.id.image_news);
+            tv_wname = (TextView) view.findViewById(R.id.tv_wname);
 
             tv_category = (TextView) view.findViewById(R.id.tv_category);
         }
@@ -64,6 +68,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
     public BookmarkAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         //View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+
+        myViewType = viewType;
 
         View itemView;
         if(viewType == 1)
@@ -91,19 +97,18 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
     public void onBindViewHolder(final BookmarkAdapter.MyViewHolder holder, final int position)
     {
         final News myNews = list.get(position);
-        if(position > 0) holder.description_news.setText(myNews.description);
         holder.title_news.setText(myNews.title);
-        holder.time_news.setText(myNews.date_news);
 
-
-        /*if(position == 0)
+        if(myViewType == 1)
         {
-            GradientDrawable shape =  new GradientDrawable();
-            shape.setCornerRadius(8);
-            shape.setColor(Color.parseColor(CategoryRepository.getById(myNews.id_category).bkcolor));
+            holder.tv_wname.setText(myNews.wname);
+            holder.tv_category.setText("Saved News");
 
-            holder.tv_category.setBackground(shape);
-        }*/
+        }else{
+            holder.description_news.setText(myNews.description);
+            holder.time_news.setText(DateConfig.parseDateToddMMyyyy(myNews.date_news));
+            holder.tv_nbr_comment.setText(" "+myNews.nbr_comments);
+        }
 
 
         RequestOptions requestOptions = new RequestOptions();

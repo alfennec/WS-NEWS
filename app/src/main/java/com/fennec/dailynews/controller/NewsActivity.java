@@ -52,11 +52,11 @@ public class NewsActivity extends AppCompatActivity {
 
     public static NewsActivity main;
 
-    public static TextView title_news, title_des, time_news, nbr_comments, tv_category;
+    public static TextView title_news, title_des, time_news, nbr_comments, tv_category, tv_wname;
 
     public static Button btn_comment;
 
-    public static ImageButton comment_image, tb_btn_bookmark, tb_btn_share;
+    public static ImageButton first_image, comment_image, tb_btn_bookmark, tb_btn_share;
 
     public static RecyclerView recyclerView;
     public static NewsSuggestedAdapter newsSuggestedAdapter;
@@ -67,7 +67,6 @@ public class NewsActivity extends AppCompatActivity {
 
     public static Bitmap newsImage;
 
-    public static ImageView first_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -94,8 +93,10 @@ public class NewsActivity extends AppCompatActivity {
         time_news       = (TextView) findViewById(R.id.time_news);
         nbr_comments    = (TextView) findViewById(R.id.nbr_comments);
         tv_category     = (TextView) findViewById(R.id.tv_category);
+        tv_wname        = (TextView) findViewById(R.id.tv_wname);
 
 
+        first_image     = (ImageButton) findViewById(R.id.first_image);
         btn_comment     = (Button) findViewById(R.id.btn_comment);
         comment_image   = (ImageButton) findViewById(R.id.comment_image);
 
@@ -104,6 +105,7 @@ public class NewsActivity extends AppCompatActivity {
         title_news.setText(current_news.title);
         title_des.setText(current_news.description);
         time_news.setText(current_news.date_news);
+        tv_wname.setText(current_news.wname);
         nbr_comments.setText(""+current_news.nbr_comments);
 
         btn_comment.setText("Read "+current_news.nbr_comments+" Comments");
@@ -115,8 +117,7 @@ public class NewsActivity extends AppCompatActivity {
         shape.setColor(Color.parseColor(CategoryRepository.getById(current_news.id_category).bkcolor));
         tv_category.setBackground(shape);
 
-        first_image = (ImageView) findViewById(R.id.first_image);
-        Glide.with(HomeActivity.main).load(Constante.url_host+"images/"+current_news.news_photo).centerCrop().into(first_image);
+        Glide.with(main).load(Constante.url_host+"images/"+current_news.news_photo).centerCrop().into(first_image);
 
         /*try
         {
@@ -186,10 +187,6 @@ public class NewsActivity extends AppCompatActivity {
                                 {
                                     BookMarkRepository.list_news.add(current_news);
 
-
-                                    ImageSaver imageSaver = new ImageSaver(main, "images", current_news.news_photo);
-                                    imageSaver.save(newsImage);
-
                                     boolean isFilePresent = BookMarkRepository.isFilePresent(main, "storage.json");
 
                                     isFilePresent = true;
@@ -235,6 +232,17 @@ public class NewsActivity extends AppCompatActivity {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, current_news.title);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, current_news.title+" \n \n " + current_news.description);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
+
+        first_image.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main, ImageActivity.class);
+                intent.putExtra("id",current_news.id);
+                main.startActivity(intent);
             }
         });
 

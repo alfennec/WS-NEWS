@@ -85,6 +85,7 @@ public class NewsRepository {
                     json_news.news_photo        = oneObject.getString("news_photo");
                     json_news.news_video        = oneObject.getString("news_video");
                     json_news.news_link         = oneObject.getString("news_link");
+                    json_news.wname             = oneObject.getString("wname");
                     json_news.created           = oneObject.getString("created");
                     json_news.modified          = oneObject.getString("modified");
                     json_news.nbr_comments      = Integer.parseInt(oneObject.getString("nbr_comments"));

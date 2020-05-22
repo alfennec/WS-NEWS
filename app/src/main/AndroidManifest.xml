@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -20,8 +22,11 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
-            android:name=".controller.ForgetPassActivity"
+            android:name=".controller.ImageActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controller.ForgetPassActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.BookNewsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

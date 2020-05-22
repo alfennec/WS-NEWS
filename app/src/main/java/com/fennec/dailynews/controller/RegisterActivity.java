@@ -105,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         newUser = new User(
                                 input_fname.getEditText().getText().toString(),
+                                input_lname.getEditText().getText().toString(),
                                 input_email.getEditText().getText().toString(),
                                 input_pass1.getEditText().getText().toString(),
                                 "enable",

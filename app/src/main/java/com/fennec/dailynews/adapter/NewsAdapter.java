@@ -17,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
+import com.fennec.dailynews.config.DateConfig;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.ui.home.HomeFragment;
 import com.fennec.dailynews.entity.News;
@@ -29,9 +30,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public List<News> list;
     public boolean showAdd = false;
 
+    public static int myViewType;
+
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView title_news,description_news,time_news,nbr_comments,tv_category;
+        public TextView title_news,description_news,time_news,tv_nbr_comment,tv_category;
         public ImageView image_news;
         public View parent;
         public RecyclerView recyclerView;
@@ -43,7 +46,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             title_news = (TextView) view.findViewById(R.id.title_news);
             description_news = (TextView) view.findViewById(R.id.description_news);
             time_news = (TextView) view.findViewById(R.id.time_news);
-            nbr_comments = (TextView) view.findViewById(R.id.nbr_comments);
+            tv_nbr_comment = (TextView) view.findViewById(R.id.tv_nbr_comment);
             image_news = (ImageView) view.findViewById(R.id.image_news);
 
             tv_category = (TextView) view.findViewById(R.id.tv_category);
@@ -60,9 +63,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     {
         //View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
 
+        myViewType = viewType;
+
         View itemView;
         if(viewType == 1)
-        {
+            {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_top, parent, false);
         }else{
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
@@ -86,18 +91,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public void onBindViewHolder(final NewsAdapter.MyViewHolder holder, final int position)
     {
         final News myNews = list.get(position);
-        if(position > 0) holder.description_news.setText(myNews.description);
         holder.title_news.setText(myNews.title);
-        holder.time_news.setText(myNews.date_news);
 
 
-        if(position == 0)
+        if(myViewType == 1)
         {
             GradientDrawable shape =  new GradientDrawable();
             shape.setCornerRadius(8);
             shape.setColor(Color.parseColor(CategoryRepository.getById(myNews.id_category).bkcolor));
 
             holder.tv_category.setBackground(shape);
+            holder.tv_category.setText(CategoryRepository.getById(myNews.id_category).name);
+
+        }else{
+            holder.description_news.setText(myNews.description);
+            holder.time_news.setText(DateConfig.parseDateToddMMyyyy(myNews.date_news));
+            holder.tv_nbr_comment.setText(" "+myNews.nbr_comments);
         }
 
 

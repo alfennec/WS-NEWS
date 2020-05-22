@@ -105,7 +105,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
             @Override
             public void onClick(View view)
             {
-                if(myComment.id_user.equals(UserRepository.main_User.name))
+                if(myComment.id_user.equals(UserRepository.main_User.fname))
                 {
                     new SweetAlertDialog(CommentsActivity.main, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Are you sure ?")

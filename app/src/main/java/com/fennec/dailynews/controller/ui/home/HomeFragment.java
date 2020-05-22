@@ -101,14 +101,14 @@ public class HomeFragment extends Fragment {
             {
                 tv_firstText.setText("Morning, Dear");
             }else {
-                 tv_firstText.setText("Morning, "+UserRepository.main_User.name);
+                 tv_firstText.setText("Morning, "+UserRepository.main_User.fname);
             }
         }else{
             if(!UserRepository.EXIST)
             {
                 tv_firstText.setText("Evening, Dear");
             }else {
-                tv_firstText.setText("Evening, "+UserRepository.main_User.name);
+                tv_firstText.setText("Evening, "+UserRepository.main_User.fname);
             }
         }
 

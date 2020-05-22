@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment {
 
     public static void isExisting()
     {
-        tv_welcome.setText("Welcome, "+ UserRepository.main_User.name);
+        tv_welcome.setText("Welcome, "+ UserRepository.main_User.fname);
         tv_under.setText("Edit you profile infos ");
 
         btn_login.setVisibility(View.GONE);

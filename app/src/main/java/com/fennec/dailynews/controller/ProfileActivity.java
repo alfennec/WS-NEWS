@@ -69,7 +69,8 @@ public class ProfileActivity extends AppCompatActivity {
         input_lname = (TextInputLayout) findViewById(R.id.input_lname);
         input_email = (TextInputLayout) findViewById(R.id.input_email);
 
-        input_fname.getEditText().setText(UserRepository.main_User.name);
+        input_fname.getEditText().setText(UserRepository.main_User.fname);
+        input_lname.getEditText().setText(UserRepository.main_User.lname);
         input_email.getEditText().setText(UserRepository.main_User.email);
 
         input_pass1.getEditText().setText(UserRepository.main_User.password);
@@ -101,7 +102,8 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     if(pass1.equals(pass2))
                     {
-                        UserRepository.main_User.name = input_fname.getEditText().getText().toString();
+                        UserRepository.main_User.fname = input_fname.getEditText().getText().toString();
+                        UserRepository.main_User.lname = input_lname.getEditText().getText().toString();
                         UserRepository.main_User.email = input_email.getEditText().getText().toString();
                         UserRepository.main_User.password = input_email.getEditText().getText().toString();
 
@@ -159,7 +161,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         edit.putInt("id", current_user.id);
         edit.putString("email", current_user.email);
-        edit.putString("name", current_user.name);
+        edit.putString("fname", current_user.fname);
+        edit.putString("lname", current_user.lname);
         edit.putString("password", current_user.password);
         edit.putString("status", current_user.status);
 

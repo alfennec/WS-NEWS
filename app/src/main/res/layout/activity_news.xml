@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="280dp">
 
-            <ImageView
+            <ImageButton
+                android:background="@null"
                 android:id="@+id/first_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -143,6 +144,7 @@
                     app:srcCompat="@drawable/ic_edit_black_24dp" />
 
                 <TextView
+                    android:id="@+id/tv_wname"
                     android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

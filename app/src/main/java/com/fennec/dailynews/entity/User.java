@@ -3,7 +3,8 @@ package com.fennec.dailynews.entity;
 public class User {
 
     public int id;
-    public String name;
+    public String fname;
+    public String lname;
     public String email;
     public String password;
     public String status;
@@ -22,25 +23,27 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String email, String password, String status) {
-        this.name = name;
+    public User(String fname, String lname, String email, String password, String status) {
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.password = password;
         this.status = status;
     }
 
-    public User(String name, String email, String password, String status, String created, String modified) {
-        this.name = name;
-        this.email = email;
+    public User(String fname, String lname, String email, String password, String status, String created, String modified) {
+        this.fname = fname;
+        this.lname = lname;
         this.password = password;
         this.status = status;
         this.created = created;
         this.modified = modified;
     }
 
-    public User(int id, String name, String email, String password, String status, String created, String modified) {
+    public User(int id, String fname, String lname, String email, String password, String status, String created, String modified) {
         this.id = id;
-        this.name = name;
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.password = password;
         this.status = status;

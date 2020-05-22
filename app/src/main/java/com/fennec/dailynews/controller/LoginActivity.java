@@ -141,7 +141,8 @@ public class LoginActivity extends AppCompatActivity {
 
         edit.putInt("id", current_user.id);
         edit.putString("email", current_user.email);
-        edit.putString("name", current_user.name);
+        edit.putString("fname", current_user.fname);
+        edit.putString("lname", current_user.lname);
         edit.putString("password", current_user.password);
         edit.putString("status", current_user.status);
 

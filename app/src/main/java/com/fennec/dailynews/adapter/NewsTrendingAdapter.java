@@ -34,7 +34,7 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView title_news,tv_category;
+        public TextView title_news, tv_category, tv_wname;
         public ImageView image_news;
         public View parent;
         public RecyclerView recyclerView;
@@ -48,6 +48,7 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
             title_news  = (TextView) view.findViewById(R.id.title_news);
             image_news  = (ImageView) view.findViewById(R.id.image_news);
             tv_category = (TextView) view.findViewById(R.id.tv_category);
+            tv_wname    = (TextView) view.findViewById(R.id.tv_wname);
 
             comment_image   = (ImageButton) view.findViewById(R.id.comment_image);
             share_image     = (ImageButton) view.findViewById(R.id.share_image);
@@ -92,6 +93,8 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
         final News myNews = list.get(position);
         holder.title_news.setText(myNews.title);
         holder.tv_category.setText(CategoryRepository.getById(myNews.id_category).name);
+
+        holder.tv_wname.setText(myNews.wname);
 
         GradientDrawable shape =  new GradientDrawable();
         shape.setCornerRadius(8);

@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.config.Constante;
+import com.fennec.dailynews.config.DateConfig;
 import com.fennec.dailynews.controller.CommentsActivity;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.NewsActivity;
@@ -88,7 +89,7 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
     {
         final News myNews = list.get(position);
         holder.title_news.setText(myNews.title);
-        holder.time_news.setText(parseDateToddMMyyyy(myNews.date_news));
+        holder.time_news.setText(DateConfig.parseDateToddMMyyyy(myNews.date_news));
         holder.nbr_comments.setText(" "+myNews.nbr_comments);
         holder.tv_category.setText(CategoryRepository.getById(myNews.id_category).name);
 
@@ -133,25 +134,6 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
     public int getItemCount()
     {
         return list.size();
-    }
-
-    public static String parseDateToddMMyyyy(String time)
-    {
-        String inputPattern = "yyyy-MM-dd HH:mm:ss";
-        String outputPattern = "dd-MMM-yyyy h:mm";
-        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
-        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
-
-        Date date = null;
-        String str = null;
-
-        try {
-            date = inputFormat.parse(time);
-            str = outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return str;
     }
 
 }

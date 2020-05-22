@@ -56,12 +56,14 @@ public class HomeActivity extends AppCompatActivity {
 
         edit.putInt("id", 0);
         edit.putString("email", "vide");
-        edit.putString("name", "vide");
+        edit.putString("fname", "vide");
+        edit.putString("lname", "vide");
         edit.putString("password", "vide");
         edit.putString("status", "vide");
 
         UserRepository.main_User.id = 0;
-        UserRepository.main_User.name = "vide";
+        UserRepository.main_User.fname = "vide";
+        UserRepository.main_User.lname = "vide";
         UserRepository.main_User.email = "vide";
         UserRepository.main_User.password = "vide";
         UserRepository.main_User.status = "vide";

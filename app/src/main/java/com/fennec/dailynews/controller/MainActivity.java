@@ -95,13 +95,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         int id = prefs.getInt("id", 0);
         String email = prefs.getString("email", "vide");
-        String name = prefs.getString("name", "vide");
+        String fname = prefs.getString("fname", "vide");
+        String lname = prefs.getString("lname", "vide");
         String password = prefs.getString("password", "vide");
         String status = prefs.getString("status", "vide");
 
         UserRepository.main_User.id = id;
         UserRepository.main_User.email = email;
-        UserRepository.main_User.name = name;
+        UserRepository.main_User.fname = fname;
+        UserRepository.main_User.lname = lname;
         UserRepository.main_User.password = password;
         UserRepository.main_User.status = status;
 

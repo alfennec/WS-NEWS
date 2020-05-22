@@ -111,8 +111,10 @@ public class BookMarkRepository {
                 object.put("news_photo" , list_news.get(i).news_photo);
                 object.put("news_video" , list_news.get(i).news_video);
                 object.put("news_link" , list_news.get(i).news_link);
+                object.put("wname" , list_news.get(i).wname);
                 object.put("created" , list_news.get(i).created);
                 object.put("modified" , list_news.get(i).modified);
+                object.put("nbr_comments" , list_news.get(i).nbr_comments);
                 array.put(object);
 
             }catch (JSONException e)
@@ -148,6 +150,7 @@ public class BookMarkRepository {
                     json_news.news_photo        = oneObject.getString("news_photo");
                     json_news.news_video        = oneObject.getString("news_video");
                     json_news.news_link         = oneObject.getString("news_link");
+                    json_news.wname             = oneObject.getString("wname");
                     json_news.created           = oneObject.getString("created");
                     json_news.modified          = oneObject.getString("modified");
                     json_news.nbr_comments      = Integer.parseInt(oneObject.getString("nbr_comments"));

@@ -58,7 +58,8 @@ public class UserRepository {
                         JSONObject oneObject = jArray.getJSONObject(i);
 
                         json_user.id = Integer.parseInt(oneObject.getString("id"));
-                        json_user.name = oneObject.getString("name");
+                        json_user.fname = oneObject.getString("fname");
+                        json_user.lname = oneObject.getString("lname");
                         json_user.email = oneObject.getString("email");
                         json_user.password = oneObject.getString("password");
                         json_user.status = oneObject.getString("status");

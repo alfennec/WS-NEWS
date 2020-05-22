@@ -93,6 +93,31 @@ public class BookNewsActivity extends AppCompatActivity {
         Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
 
 
+        btn_comment.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new SweetAlertDialog(main, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText("No internet connection")
+                        .show();
+            }
+        });
+
+        nbr_comments.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new SweetAlertDialog(main, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText("No internet connection")
+                        .show();
+            }
+        });
+
+
         /**** toolbar part(){} **/
 
         tb_btn_bookmark = (ImageButton) findViewById(R.id.tb_btn_bookmark);

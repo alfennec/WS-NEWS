@@ -100,7 +100,7 @@
 
                 <TextView
                     android:layout_marginLeft="3dp"
-                    android:id="@+id/time_news"
+                    android:id="@+id/tv_wname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

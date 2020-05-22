@@ -35,6 +35,7 @@ android:orientation="vertical">
                 android:background="@null"
                 android:textColor="@color/colorGrey"
                 android:hint="Search..."
+                android:textColorHint="@color/colorAccent"
                 android:imeOptions="actionSearch"/>
 
             <ImageButton
