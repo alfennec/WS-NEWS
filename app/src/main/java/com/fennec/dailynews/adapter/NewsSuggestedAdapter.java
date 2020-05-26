@@ -104,7 +104,7 @@ public class NewsSuggestedAdapter extends RecyclerView.Adapter<NewsSuggestedAdap
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
+        Glide.with(HomeActivity.main).load(Constante.url_images+"/news/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
 

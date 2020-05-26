@@ -14,6 +14,7 @@ import com.fennec.dailynews.config.WeatherJson;
 import com.fennec.dailynews.entity.User;
 import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
+import com.onesignal.OneSignal;
 
 import java.security.cert.X509Certificate;
 import javax.net.ssl.TrustManager;
@@ -64,6 +65,8 @@ public class SplashActivity extends AppCompatActivity {
                 return new X509Certificate[0];
             }
         }});
+
+
 
     }
 }

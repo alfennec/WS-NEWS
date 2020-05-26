@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.6, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -5,6 +19,15 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.fennec.dailynews"
+        android {
+            defaultConfig {
+                manifestPlaceholders = [
+                        onesignal_app_id: 'e35764e1-d593-4576-9525-18e8ff3d43f4',
+                        // Project number pulled from dashboard, local value is ignored.
+                        onesignal_google_project_number: 'REMOTE'
+                ]
+            }
+        }
         minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
@@ -48,7 +71,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:1.1.0"
     implementation 'com.balysv:material-ripple:1.0.2'
     //image zooom
-
     implementation 'com.otaliastudios:zoomlayout:1.7.1'
+    //onesignel
+    implementation 'com.onesignal:OneSignal:[3.13.0, 3.99.99]'
 
 }

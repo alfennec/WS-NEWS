@@ -55,7 +55,7 @@ public class ImageActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.image);
 
         Glide.with(main)
-                .load(Constante.url_host+"images/"+current_news.news_photo)
+                .load(Constante.url_images+"news/"+current_news.news_photo)
                 .error(R.drawable.back)
                 .placeholder(R.drawable.back)
                 .centerCrop()

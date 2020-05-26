@@ -8,8 +8,8 @@ public class DateConfig {
 
     public static String parseDateToddMMyyyy(String time)
     {
-        String inputPattern = "yyyy-MM-dd HH:mm:ss";
-        String outputPattern = "dd-MMM-yyyy h:mm";
+        String inputPattern = "yyyy-MM-dd";
+        String outputPattern = "dd MMM, yyyy";
         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
         SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 

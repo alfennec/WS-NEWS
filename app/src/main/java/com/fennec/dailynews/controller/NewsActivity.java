@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.balysv.materialripple.MaterialRippleLayout;
@@ -33,6 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Html;
 import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +112,15 @@ public class NewsActivity extends AppCompatActivity {
 
         btn_comment.setText("Read "+current_news.nbr_comments+" Comments");
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        {
+            title_des.setText(Html.fromHtml(current_news.description, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            title_des.setText(Html.fromHtml(current_news.description));
+        }
+
+
+
         tv_category.setText(CategoryRepository.getById(current_news.id_category).name);
 
         GradientDrawable shape =  new GradientDrawable();
@@ -117,7 +128,7 @@ public class NewsActivity extends AppCompatActivity {
         shape.setColor(Color.parseColor(CategoryRepository.getById(current_news.id_category).bkcolor));
         tv_category.setBackground(shape);
 
-        Glide.with(main).load(Constante.url_host+"images/"+current_news.news_photo).centerCrop().into(first_image);
+        Glide.with(main).load(Constante.url_images+"news/"+current_news.news_photo).centerCrop().into(first_image);
 
         /*try
         {

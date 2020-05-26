@@ -2,6 +2,8 @@ package com.fennec.dailynews.adapter;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,7 +106,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             holder.tv_category.setText(CategoryRepository.getById(myNews.id_category).name);
 
         }else{
-            holder.description_news.setText(myNews.description);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            {
+                holder.description_news.setText(Html.fromHtml(myNews.description, Html.FROM_HTML_MODE_COMPACT));
+            }else {
+                holder.description_news.setText(Html.fromHtml(myNews.description));
+            }
+
             holder.time_news.setText(DateConfig.parseDateToddMMyyyy(myNews.date_news));
             holder.tv_nbr_comment.setText(" "+myNews.nbr_comments);
         }
@@ -113,7 +122,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
+        Glide.with(HomeActivity.main).load(Constante.url_images+"news/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
 

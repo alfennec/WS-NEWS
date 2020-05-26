@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.fennec.dailynews.R;
 import com.fennec.dailynews.repository.UserRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.onesignal.OneSignal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,13 +27,21 @@ public class HomeActivity extends AppCompatActivity {
 
     public static String MY_PREFS_NAME = "first_log";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         main = this;
+
+        /****** one signal notification **/
+
+        // OneSignal Initialization
+        OneSignal.startInit(main)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

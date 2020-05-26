@@ -85,7 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(20));
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"/images/category/"+myCategory.image).apply(requestOptions).into(holder.image_category);
+        Glide.with(HomeActivity.main).load(Constante.url_images+"category/"+myCategory.image).apply(requestOptions).into(holder.image_category);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
 
