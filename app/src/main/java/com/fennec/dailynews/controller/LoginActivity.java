@@ -100,7 +100,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-
+                Intent intent = new Intent(main, ForgetPassActivity.class);
+                main.startActivity(intent);
             }
         });
 
@@ -158,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public static void OnFailedLogin()
     {
-        dialog.dismiss();
+        pDialog.dismiss();
         Toast.makeText(main, "Incorrect email or password !" , Toast.LENGTH_LONG ).show();
     }
 }

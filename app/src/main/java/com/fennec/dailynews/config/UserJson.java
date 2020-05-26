@@ -3,6 +3,7 @@ package com.fennec.dailynews.config;
 import android.content.Context;
 import android.util.Log;
 
+import com.fennec.dailynews.controller.ForgetPassActivity;
 import com.fennec.dailynews.controller.LoginActivity;
 import com.fennec.dailynews.controller.ProfileActivity;
 import com.fennec.dailynews.controller.RegisterActivity;
@@ -70,6 +71,8 @@ public class UserJson {
             case 2: postSuccess(result); break;
 
             case 3: editSuccess(result); break;
+
+            case 4: forgetPass(result); break;
 
             default : break;
         }
@@ -170,5 +173,45 @@ public class UserJson {
     public void deleteSuccess()
     {
 
+    }
+
+    public void forgetPass(String result)
+    {
+        String myResult = "["+result+"]";
+        int status = 0;
+        String status_message;
+
+        try
+        {
+            JSONArray jArray = new JSONArray(myResult);
+
+            for (int i=0; i < jArray.length(); i++)
+            {
+                try
+                {
+                    JSONObject oneObject = jArray.getJSONObject(i);
+
+                    status          = Integer.parseInt(oneObject.getString("status"));
+                    status_message  = oneObject.getString("status_message");
+                }
+                catch (JSONException e)
+                {
+                    Log.e("tag_json", ""+e);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log.e("tag_json", ""+e);
+        }
+
+
+        if(status == 1)
+        {
+            ForgetPassActivity.OnSuccesLogin();
+        }else
+        {
+            ForgetPassActivity.OnFailedLogin();
+        }
     }
 }
