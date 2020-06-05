@@ -46,12 +46,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public Button btn_forget, btn_register;
 
+    public static int acty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         main = this;
+
+        acty = getIntent().getIntExtra("acty",0);
 
         input_email = (TextInputLayout) findViewById(R.id.input_email);
         input_pass  = (TextInputLayout) findViewById(R.id.input_pass);
@@ -149,10 +153,12 @@ public class LoginActivity extends AppCompatActivity {
 
         edit.commit();
 
-        ProfileFragment.isExisting();
+        if(acty == 0)
+        {
+            ProfileFragment.isExisting();
+        }
 
         UserRepository.EXIST = true;
-
         main.finish();
 
     }

@@ -120,6 +120,7 @@ public class CommentsActivity extends AppCompatActivity {
                 }else
                     {
                         Intent intent = new Intent(main, LoginActivity.class);
+                        intent.putExtra("acty", 2);
                         main.startActivity(intent);
                     }
             }

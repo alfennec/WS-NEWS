@@ -29,6 +29,7 @@ android {
             }
         }
         minSdkVersion 18
+        multiDexEnabled true
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -56,6 +57,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    /* my ads */
+    //implementation 'com.google.android.gms:play-services-ads:19.1.0'
     /* my extention */
     implementation 'com.koushikdutta.ion:ion:2.+'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -74,5 +77,7 @@ dependencies {
     implementation 'com.otaliastudios:zoomlayout:1.7.1'
     //onesignel
     implementation 'com.onesignal:OneSignal:[3.13.0, 3.99.99]'
+    //google ads
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
 
 }

@@ -93,14 +93,24 @@
         android:orientation="horizontal"
         android:layout_marginBottom="10dp">
 
-            <TextView
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/ripple"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Privacy Policy"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorGrey"
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:layout_toLeftOf="@+id/nbr_comments">
+
+                <Button
+                    android:id="@+id/btn_pp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Privacy Policy"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorGrey"
+                    android:gravity="center_vertical"
+                    android:background="@null"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
 
             <ImageView
                 android:layout_width="50dp"
@@ -123,14 +133,24 @@
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Rate Us"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorGrey"
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:layout_toLeftOf="@+id/nbr_comments">
+
+                <Button
+                    android:id="@+id/btn_rus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Rate Us"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorGrey"
+                    android:gravity="center_vertical"
+                    android:background="@null"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
 
             <ImageView
                 android:layout_width="50dp"
@@ -153,14 +173,23 @@
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="More Apps"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorGrey"
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:layout_toLeftOf="@+id/nbr_comments">
+
+                <Button
+                    android:id="@+id/btn_mapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="More Apps"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorGrey"
+                    android:gravity="center_vertical"
+                    android:background="@null"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
 
             <ImageView
                 android:layout_width="50dp"
@@ -183,14 +212,23 @@
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="About"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorGrey"
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:layout_toLeftOf="@+id/nbr_comments">
+
+                <Button
+                    android:id="@+id/btn_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="About"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorGrey"
+                    android:gravity="center_vertical"
+                    android:background="@null"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
 
             <ImageView
                 android:layout_width="50dp"
