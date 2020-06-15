@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, time_splash);
 
-        //WeatherJson WeatherJson = new WeatherJson("Berkane" , main, "get", 1);
+        WeatherJson WeatherJson = new WeatherJson("Berkane" , main, "get", 1);
 
 
         Ion.getDefault(main).getHttpClient().getSSLSocketMiddleware().setTrustManagers(new TrustManager[] {new X509TrustManager() {

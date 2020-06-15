@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
         /*** add news from bookmark ***/
 
+        BookMarkRepository.list_news.clear();
+
         boolean isFilePresent = BookMarkRepository.isFilePresent(main, "storage.json");
+
         if(isFilePresent)
         {
             String jsonString = BookMarkRepository.read(main, "storage.json");

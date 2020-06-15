@@ -1,14 +1,10 @@
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swiperefresh"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimaryDark">
-
-    <ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:background="@color/colorPrimaryDark"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
@@ -77,6 +73,4 @@
         </LinearLayout>
 
 
-
-    </ScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</ScrollView>

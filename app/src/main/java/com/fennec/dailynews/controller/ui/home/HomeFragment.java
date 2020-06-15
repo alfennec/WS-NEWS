@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,15 @@ import com.fennec.dailynews.adapter.NewsTrendingAdapter;
 import com.fennec.dailynews.config.CategoryJson;
 import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.config.NewsJson;
+import com.fennec.dailynews.controller.BugActivity;
 import com.fennec.dailynews.controller.HomeActivity;
+import com.fennec.dailynews.controller.MainActivity;
 import com.fennec.dailynews.controller.NewsActivity;
+import com.fennec.dailynews.controller.SplashActivity;
 import com.fennec.dailynews.repository.CategoryRepository;
 import com.fennec.dailynews.repository.NewsRepository;
 import com.fennec.dailynews.repository.UserRepository;
+import com.fennec.dailynews.repository.WeatherRepository;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -72,6 +77,9 @@ public class HomeFragment extends Fragment {
     public static ImageView weather_img;
     public static TextView tv_temp, tv_firstText;
 
+    public static int time_dialog = 10000;
+    public static boolean server_stats = false;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -110,12 +118,11 @@ public class HomeFragment extends Fragment {
         weather_img = (ImageView) root.findViewById(R.id.weather_img);
         tv_temp = (TextView) root.findViewById(R.id.tv_temp);
 
-        //Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/"+ WeatherRepository.img +".png").into(weather_img);
-        //tv_temp.setText(WeatherRepository.temp+"°C");
+        Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/"+ WeatherRepository.img +".png").into(weather_img);
+        tv_temp.setText(WeatherRepository.temp+"°C");
 
-        Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/02n.png").into(weather_img);
-        tv_temp.setText("25°C");
-
+        /*Glide.with(HomeActivity.main).load(Constante.url_host+"images/weather/02n.png").into(weather_img);
+        tv_temp.setText("25°C");*/
 
 
 
@@ -136,6 +143,23 @@ public class HomeFragment extends Fragment {
         pDialog.setCancelable(false);
         pDialog.show();
 
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(!server_stats)
+                {
+                    pDialog.dismiss();
+
+                    Intent intent = new Intent(main.getContext(), BugActivity.class);
+                    startActivity(intent);
+
+                    HomeActivity.main.finish();
+                }
+            }
+        }, time_dialog);
+
         return root;
     }
 
@@ -146,6 +170,8 @@ public class HomeFragment extends Fragment {
 
     public static void onSucces()
     {
+        server_stats = true;
+
         /** adapter for test we have to improve our self for this app  **/
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(main.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -180,18 +206,6 @@ public class HomeFragment extends Fragment {
         pDialog.dismiss();
         shimmerContainer.stopShimmerAnimation();
         shimmerContainer.setVisibility(View.GONE);
-
-
-        /************** adss gooogle ************************/
-        /*MobileAds.initialize(main.getContext(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        AdView adView = new AdView(main.getContext());
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("ca-app-pub-3940256099942544");*/
     }
 
     public static void to_newIntent(int id)

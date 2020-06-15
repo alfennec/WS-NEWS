@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -75,10 +77,15 @@ public class BookNewsActivity extends AppCompatActivity {
         btn_comment     = (Button) findViewById(R.id.btn_comment);
         comment_image   = (ImageButton) findViewById(R.id.comment_image);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        {
+            title_des.setText(Html.fromHtml(current_news.description, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            title_des.setText(Html.fromHtml(current_news.description));
+        }
 
 
         title_news.setText(current_news.title);
-        title_des.setText(current_news.description);
         time_news.setText(current_news.date_news);
         nbr_comments.setText(""+current_news.nbr_comments);
 

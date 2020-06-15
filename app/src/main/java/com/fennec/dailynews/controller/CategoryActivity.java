@@ -32,8 +32,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     public static Category current_category;
 
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-
     public static ImageButton tb_btn_search;
 
     public static TextView tv_nonews;
@@ -79,24 +77,6 @@ public class CategoryActivity extends AppCompatActivity {
             }
         recyclerView.setAdapter(newsAdapter);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh()
-            {
-                Toast.makeText(main, "Refresh", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 3000);
-            }
-        });
-
-        mSwipeRefreshLayout.setColorScheme(R.color.blue, R.color.purple, R.color.green, R.color.orange);
-
-
         tb_btn_search = (ImageButton) findViewById(R.id.tb_btn_search);
 
         tb_btn_search.setOnClickListener(new View.OnClickListener()
@@ -108,7 +88,6 @@ public class CategoryActivity extends AppCompatActivity {
                 main.startActivity(i);
             }
         });
-
 
 
 

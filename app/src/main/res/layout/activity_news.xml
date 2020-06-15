@@ -58,6 +58,15 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_launcher_background" />
 
+            <ImageView
+                android:id="@+id/ifvideo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/ic_slow_motion_video_black_24dp"
+                android:tint="@color/colorBlanc"/>
+
         </RelativeLayout>
 
         <LinearLayout

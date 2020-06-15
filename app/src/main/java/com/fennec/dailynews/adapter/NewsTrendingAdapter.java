@@ -35,7 +35,7 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
         public TextView title_news, tv_category, tv_wname;
-        public ImageView image_news;
+        public ImageView image_news, ifvideo;
         public View parent;
         public RecyclerView recyclerView;
 
@@ -49,6 +49,8 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
             image_news  = (ImageView) view.findViewById(R.id.image_news);
             tv_category = (TextView) view.findViewById(R.id.tv_category);
             tv_wname    = (TextView) view.findViewById(R.id.tv_wname);
+
+            ifvideo     = (ImageView) view.findViewById(R.id.ifvideo);
 
             comment_image   = (ImageButton) view.findViewById(R.id.comment_image);
             share_image     = (ImageButton) view.findViewById(R.id.share_image);
@@ -109,6 +111,13 @@ public class NewsTrendingAdapter extends RecyclerView.Adapter<NewsTrendingAdapte
         Glide.with(HomeActivity.main).load(Constante.url_images+"/news/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
+
+        holder.ifvideo.setVisibility(View.GONE);
+
+        if(myNews.content_type.equals("video"))
+        {
+            holder.ifvideo.setVisibility(View.VISIBLE);
+        }
 
         holder.comment_image.setOnClickListener(new View.OnClickListener()
         {

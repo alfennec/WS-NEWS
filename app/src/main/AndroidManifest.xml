@@ -13,6 +13,7 @@
         android:required="true" />
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,17 +21,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        android:name="androidx.multidex.MultiDexApplication"
         tools:replace="android:icon">
 
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
-            android:name=".controller.ImageActivity"
+            android:name=".controller.BugActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controller.VideoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.ImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.ForgetPassActivity"
             android:theme="@style/AppTheme.NoActionBar" />

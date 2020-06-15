@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -37,11 +39,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.transition.Transition;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.fennec.dailynews.R;
 
@@ -59,6 +63,10 @@ public class NewsActivity extends AppCompatActivity {
     public static Button btn_comment;
 
     public static ImageButton first_image, comment_image, tb_btn_bookmark, tb_btn_share;
+
+    public static ImageView ifvideo;
+
+    public static VideoView first_video;
 
     public static RecyclerView recyclerView;
     public static NewsSuggestedAdapter newsSuggestedAdapter;
@@ -102,6 +110,8 @@ public class NewsActivity extends AppCompatActivity {
         btn_comment     = (Button) findViewById(R.id.btn_comment);
         comment_image   = (ImageButton) findViewById(R.id.comment_image);
 
+        ifvideo         = (ImageView) findViewById(R.id.ifvideo);
+        ifvideo.setVisibility(View.GONE);
 
 
         title_news.setText(current_news.title);
@@ -120,6 +130,11 @@ public class NewsActivity extends AppCompatActivity {
         }
 
 
+        if(current_news.content_type.equals("video"))
+        {
+            ifvideo.setVisibility(View.VISIBLE);
+        }
+
 
         tv_category.setText(CategoryRepository.getById(current_news.id_category).name);
 
@@ -130,13 +145,6 @@ public class NewsActivity extends AppCompatActivity {
 
         Glide.with(main).load(Constante.url_images+"news/"+current_news.news_photo).centerCrop().into(first_image);
 
-        /*try
-        {
-            URL imageurl = new URL(Constante.url_host+"images/"+current_news.news_photo);
-            Bitmap bitmap = BitmapFactory.decodeStream(imageurl.openConnection().getInputStream());
-
-            //Log.e("TAG-PHOTO", "onCreate: "+Constante.url_host+"images/"+current_news.news_photo);
-        }catch (Exception e){}*/
 
 
 
@@ -251,9 +259,18 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(main, ImageActivity.class);
-                intent.putExtra("id",current_news.id);
-                main.startActivity(intent);
+
+                if(current_news.content_type.equals("video"))
+                {
+                    Intent intent = new Intent(main, VideoActivity.class);
+                    intent.putExtra("id",current_news.id);
+                    main.startActivity(intent);
+                }else
+                    {
+                        Intent intent = new Intent(main, ImageActivity.class);
+                        intent.putExtra("id",current_news.id);
+                        main.startActivity(intent);
+                    }
             }
         });
 

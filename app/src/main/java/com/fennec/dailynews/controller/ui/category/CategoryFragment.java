@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.fennec.dailynews.adapter.NewsAdapter;
 import com.fennec.dailynews.config.CategoryJson;
 import com.fennec.dailynews.config.Constante;
 import com.fennec.dailynews.config.NewsJson;
+import com.fennec.dailynews.controller.BugActivity;
 import com.fennec.dailynews.controller.CategoryActivity;
 import com.fennec.dailynews.controller.HomeActivity;
 import com.fennec.dailynews.controller.NewsActivity;
@@ -57,6 +59,9 @@ public class CategoryFragment extends Fragment {
 
     private SwipeRefreshLayout swipeContainer;
 
+    public static int time_dialog = 5000;
+    public static boolean server_stats = false;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -81,11 +86,30 @@ public class CategoryFragment extends Fragment {
         pDialog.setCancelable(false);
         pDialog.show();
 
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(!server_stats)
+                {
+                    pDialog.dismiss();
+
+                    Intent intent = new Intent(main.getContext(), BugActivity.class);
+                    startActivity(intent);
+
+                    HomeActivity.main.finish();
+                }
+            }
+        }, time_dialog);
+
         return root;
     }
 
     public static void onSucces()
     {
+        server_stats = true;
+
         /** adapter for test we have to improve our self for this app  **/
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(main.getContext(), LinearLayoutManager.VERTICAL, false);

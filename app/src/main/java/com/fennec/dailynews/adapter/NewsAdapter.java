@@ -37,7 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
         public TextView title_news,description_news,time_news,tv_nbr_comment,tv_category;
-        public ImageView image_news;
+        public ImageView image_news, ifvideo;
         public View parent;
         public RecyclerView recyclerView;
 
@@ -51,6 +51,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             tv_nbr_comment = (TextView) view.findViewById(R.id.tv_nbr_comment);
             image_news = (ImageView) view.findViewById(R.id.image_news);
 
+            ifvideo     = (ImageView) view.findViewById(R.id.ifvideo);
+            
             tv_category = (TextView) view.findViewById(R.id.tv_category);
         }
     }
@@ -68,12 +70,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         myViewType = viewType;
 
         View itemView;
-        if(viewType == 1)
-            {
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_top, parent, false);
-        }else{
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
-        }
+
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+
 
         return new NewsAdapter.MyViewHolder(itemView);
     }
@@ -96,17 +95,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         holder.title_news.setText(myNews.title);
 
 
-        if(myViewType == 1)
-        {
-            GradientDrawable shape =  new GradientDrawable();
-            shape.setCornerRadius(8);
-            shape.setColor(Color.parseColor(CategoryRepository.getById(myNews.id_category).bkcolor));
-
-            holder.tv_category.setBackground(shape);
-            holder.tv_category.setText(CategoryRepository.getById(myNews.id_category).name);
-
-        }else{
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             {
                 holder.description_news.setText(Html.fromHtml(myNews.description, Html.FROM_HTML_MODE_COMPACT));
@@ -116,7 +104,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
             holder.time_news.setText(DateConfig.parseDateToddMMyyyy(myNews.date_news));
             holder.tv_nbr_comment.setText(" "+myNews.nbr_comments);
-        }
+
 
 
         RequestOptions requestOptions = new RequestOptions();
@@ -125,6 +113,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         Glide.with(HomeActivity.main).load(Constante.url_images+"news/"+myNews.news_photo).apply(requestOptions).into(holder.image_news);
 
         Log.d("TAG_GLIDE", "onBindViewHolder: count");
+
+        holder.ifvideo.setVisibility(View.GONE);
+
+        if(myNews.content_type.equals("video"))
+        {
+            holder.ifvideo.setVisibility(View.VISIBLE);
+        }
+
 
         holder.parent.setOnClickListener(new View.OnClickListener()
         {

@@ -14,12 +14,28 @@
         android:orientation="horizontal"
         android:padding="7dp">
 
-        <ImageView
-            android:id="@+id/image_news"
+        <RelativeLayout
             android:layout_width="110dp"
             android:layout_height="100dp"
-            android:layout_weight="0"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_weight="0">
+
+            <ImageView
+                android:id="@+id/image_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/ifvideo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/ic_slow_motion_video_black_24dp"
+                android:tint="@color/colorBlanc"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
